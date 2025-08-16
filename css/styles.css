@@ -189,7 +189,9 @@ a.custom-card:hover {
   color: orange;
 }
 
-
+body {
+  background-color: #2c2c2c;
+}
 
 #products-list-container {
   display: flex;
@@ -198,6 +200,7 @@ a.custom-card:hover {
   flex-wrap: wrap;
   margin-bottom: 20px;
 
+
 }
 #products-list-container .list-group-item {
   display: flex;
@@ -205,7 +208,7 @@ a.custom-card:hover {
   margin: 10px;
   width: 400px;
   height: 400px;
-  background-color: #000000;
+  background-color: #1a1a1a;
   color: #fff;
  border-radius: 1%;
  box-shadow: 0 8px 20px rgba(0.1, 0.1, 0.1, 0.1);
@@ -222,6 +225,9 @@ transform: scale(1.05);
 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   }
 
+  #categoriesName {
+    color: white;
+  }
 
 
 
