@@ -11,16 +11,18 @@ function showProductsList(){
         htmlContentToAppend += `
         <div class="list-group-item">
             <div class="row">
-                <div class="col-3">
+                <div>
                     <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
                 </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
+                <div>
+                    <div class="d-flex w-100 justify-content-center">
                         <h4 class="mb-1">${product.name}</h4>
-                        <small class="text-muted">${product.soldCount} vendidos</small>
+                        </div>
+                    <div class="d-flex justify-content-between mt-1 mb-2" >
+                        <p class="mb-1"><b>${product.currency} ${product.cost}</b></p>
+                        <small class="text-muted">${product.soldCount} vendidos</small> 
                     </div>
-                    <p class="mb-1">${product.description}</p>
-                    <p class="mb-1">${product.currency} ${product.cost}</p>
+                    <p class="mb-1 description">${product.description}</p>
                 </div>
             </div>
         </div>
