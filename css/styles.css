@@ -188,3 +188,41 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+
+
+#products-list-container {
+  display: flex;
+  position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+
+}
+#products-list-container .list-group-item {
+  display: flex;
+  text-align: center;
+  margin: 10px;
+  width: 400px;
+  height: 400px;
+  background-color: #000000;
+  color: #fff;
+ border-radius: 1%;
+ box-shadow: 0 8px 20px rgba(0.1, 0.1, 0.1, 0.1);
+}
+#products-list-container .list-group-item img {
+  display: flex;
+  object-fit: cover;
+  align-items: center;
+  
+  }
+  #products-list-container .list-group-item:hover {
+transition: transform 0.3s ease;
+transform: scale(1.05);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+
+
+
+
