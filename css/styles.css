@@ -159,9 +159,15 @@ footer p {
 
 .signin {
   width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+  max-width: 400px;
+  padding: 2rem;
+  margin: 80px auto;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #spinner-wrapper {
@@ -229,6 +235,61 @@ box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     color: white;
   }
 
+body.login-page {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../img/login-back.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body.login-page main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-control {
+  border-radius: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  border: 1px solid #ccc;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #53c0fb;
+  box-shadow: 0 2px 8px rgba(83, 192, 251, 0.3);
+  outline: none;
+}
 
 
+button#btnLogin {
+  width: 50%;
+  margin: 0 auto;
+  display: block;
+  border-radius: 30px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+button#btnLogin:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+}
+
+.register-link {
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
 
