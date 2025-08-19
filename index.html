@@ -12,6 +12,27 @@
 </head>
 
 <body>
+  <script>
+  (function(){
+    const sessionKey = 'myAppSession';
+    try {
+      const s = JSON.parse(localStorage.getItem(sessionKey) || 'null');
+      if (!s || !s.logged) {
+        // Guardar la URL para volver después del login
+        localStorage.setItem('redirectAfterLogin', window.location.href);
+        window.location.href = 'login.html';
+      } else {
+        // Si querés usar el nombre de usuario en la UI:
+        // document.getElementById('userNameSpan').textContent = s.user;
+      }
+    } catch (err) {
+      localStorage.removeItem(sessionKey);
+      localStorage.setItem('redirectAfterLogin', window.location.href);
+      window.location.href = 'login.html';
+    }
+  })();
+</script>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -85,9 +106,23 @@
       <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+  <button id="logoutBtn" class="btn btn-outline-secondary">Cerrar sesión</button>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/index.js"></script>
   <script src="js/init.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('logoutBtn');
+    if (!btn) return; // si la página no tiene botón, no hace nada
+
+    btn.addEventListener('click', () => {
+      localStorage.removeItem('myAppSession');
+      localStorage.removeItem('redirectAfterLogin');
+      window.location.href = 'login.html';
+    });
+  });
+</script>
+
 </body>
 
 </html>
