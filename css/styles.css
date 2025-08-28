@@ -434,3 +434,10 @@ button#btnLogin:hover {
 .collapse.navbar-collapse {
   justify-content: center !important; 
 }
+.dropdown-menu {
+  min-width: auto;   
+  width: max-content;
+  background-color: #ffffff;
+  border-color: #2c2c2c;
+
+}
