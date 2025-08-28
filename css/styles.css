@@ -202,9 +202,10 @@ a.custom-card:hover {
   flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: 20px;
-
-
+  justify-content: center;
+  gap: 20px;
 }
+
 #products-list-container .list-group-item {
   display: flex;
   text-align: center;
@@ -299,4 +300,11 @@ button#btnLogin:hover {
 }
 #mailUserNav {
   color: white;
+  
+.navbar-nav {
+  gap: 100px; 
+}
+
+.collapse.navbar-collapse {
+  justify-content: center !important; 
 }
