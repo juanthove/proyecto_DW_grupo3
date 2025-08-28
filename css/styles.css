@@ -301,8 +301,8 @@ button#btnLogin:hover {
 }
 #mailUserNav {
   color: white;
-  
-=======
+}
+
 @media (max-width: 1024px) {
   .login-container .row {
     flex-direction: column;
