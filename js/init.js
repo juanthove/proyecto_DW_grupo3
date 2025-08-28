@@ -11,51 +11,51 @@ const userObj = localStorage.getItem('myAppSession');
 const parsedUser = JSON.parse(userObj);
 
 
-let showSpinner = function(){
+let showSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "block";
 }
 
-let hideSpinner = function(){
+let hideSpinner = function () {
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-let getJSONData = function(url){
-    let result = {};
-    showSpinner();
-    return fetch(url)
+let getJSONData = function (url) {
+  let result = {};
+  showSpinner();
+  return fetch(url)
     .then(response => {
       if (response.ok) {
         return response.json();
-      }else{
+      } else {
         throw Error(response.statusText);
       }
     })
-    .then(function(response) {
-          result.status = 'ok';
-          result.data = response;
-          hideSpinner();
-          return result;
+    .then(function (response) {
+      result.status = 'ok';
+      result.data = response;
+      hideSpinner();
+      return result;
     })
-    .catch(function(error) {
-        result.status = 'error';
-        result.data = error;
-        hideSpinner();
-        return result;
+    .catch(function (error) {
+      result.status = 'error';
+      result.data = error;
+      hideSpinner();
+      return result;
     });
 }
- document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('logoutBtn');
-    if (!btn) return; // si la página no tiene botón, no hace nada
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('logoutBtn');
+  if (!btn) return; // si la página no tiene botón, no hace nada
 
-    btn.addEventListener('click', () => {
-      localStorage.removeItem('myAppSession');
-      localStorage.removeItem('redirectAfterLogin');
-      window.location.href = 'login.html';
-    });
+  btn.addEventListener('click', () => {
+    localStorage.removeItem('myAppSession');
+    localStorage.removeItem('redirectAfterLogin');
+    window.location.href = 'login.html';
   });
+});
 
 if (navBar) {
-  
+
   navBar.innerHTML = `<nav class="navbar navbar-expand-lg navbar-dark p-1 background-navbar">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -75,14 +75,14 @@ if (navBar) {
           </li>
           <li class="nav-item">
           
-          <div class="dropdown color-white">
+          <div class="dropdown">
   <a id="mailUserNav" class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     ${parsedUser.user}
   </a>
 
   <ul class="dropdown-menu">
     <li>
-    <button id="logoutBtn" class="btn btn-outline-secondary d-flex m-auto">Cerrar sesión</button>
+    <button id="logoutBtn" class="btn btn-outline-secondary m-2 mt-auto mb-auto">Cerrar sesión</button>
     </li>
    
   </ul>
