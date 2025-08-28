@@ -18,31 +18,41 @@
 
 <body class="login-page">
   <main class="mt-5">
-    <div class="container">
-      <div class="signin">
+    <div class="container login-container">
+      <div class="row justify-content-center align-items-center">
 
-        <h1 class="text-center mb-4">Iniciar sesión</h1>
+        <div class="col-md-5 text-center login-left">
+          <img src="img/login.png" alt="Logo eMercado" class="img-fluid logo-login mb-4">
+          <img src="img/login2.png" alt="Imagen adicional logo" class="img-fluid extra-img">
+        </div>
 
-        <form id="loginForm">
-          <div class="mb-3">
-            <label for="usuario" class="form-label">Usuario</label>
-            <input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario">
-            <div class="text-danger" id="errorUsuario"></div>
+        <div class="col-md-5">
+          <div class="signin">
+
+            <h1 class="text-center mb-4">Iniciar sesión</h1>
+
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="usuario" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario">
+                <div class="text-danger" id="errorUsuario"></div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
+                <div class="text-danger" id="errorPassword"></div>
+              </div>
+
+              <button class="btn btn-primary" type="button" id="btnLogin">Ingresar</button>
+
+              <div class="text-center mt-3">
+                <a href="register.html" class="register-link">¿No tienes un usuario? Regístrate</a>
+              </div>
+            </form>
+
           </div>
-          
-          <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
-            <div class="text-danger" id="errorPassword"></div>
-          </div>
-
-          <button class="btn btn-primary" type="button" id="btnLogin">Ingresar</button>
-
-          <div class="text-center mt-3">
-            <a href="register.html" class="register-link">¿No tienes un usuario? Regístrate</a>
-          </div>
-        </form>
-
+        </div>
       </div>
     </div>
   </main>
