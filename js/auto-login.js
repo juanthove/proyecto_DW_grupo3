@@ -14,13 +14,3 @@
     }
   })();
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('logoutBtn');
-    if (!btn) return; // si la página no tiene botón, no hace nada
-
-    btn.addEventListener('click', () => {
-      localStorage.removeItem('myAppSession');
-      localStorage.removeItem('redirectAfterLogin');
-      window.location.href = 'login.html';
-    });
-  });
