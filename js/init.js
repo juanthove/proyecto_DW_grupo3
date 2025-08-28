@@ -6,6 +6,10 @@ const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/prod
 const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
 const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
 const EXT_TYPE = ".json";
+let navBar = document.getElementById("navBarDiv");
+const userObj = localStorage.getItem('myAppSession');
+const parsedUser = JSON.parse(userObj);
+
 
 let showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
@@ -38,4 +42,55 @@ let getJSONData = function(url){
         hideSpinner();
         return result;
     });
+}
+ document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('logoutBtn');
+    if (!btn) return; // si la página no tiene botón, no hace nada
+
+    btn.addEventListener('click', () => {
+      localStorage.removeItem('myAppSession');
+      localStorage.removeItem('redirectAfterLogin');
+      window.location.href = 'login.html';
+    });
+  });
+
+if (navBar) {
+  
+  navBar.innerHTML = `<nav class="navbar navbar-expand-lg navbar-dark p-1 background-navbar">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav w-100 justify-content-between">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="categories.html">Categorías</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sell.html">Vender</a>
+          </li>
+          <li class="nav-item">
+          
+          <div class="dropdown color-white">
+  <a id="mailUserNav" class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    ${parsedUser.user}
+  </a>
+
+  <ul class="dropdown-menu">
+    <li>
+    <button id="logoutBtn" class="btn btn-outline-secondary d-flex m-auto">Cerrar sesión</button>
+    </li>
+   
+  </ul>
+</div>
+          
+</li>
+        </ul>
+      </div>
+    </div>
+  </nav> `;
 }
