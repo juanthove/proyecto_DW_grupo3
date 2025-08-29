@@ -76,7 +76,7 @@ if (navBar) {
         <li class="nav-item">
 
           <div class="dropdown">
-            <a class="nav-link btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               ${parsedUser.user}
             </a>
