@@ -57,40 +57,41 @@ document.addEventListener('DOMContentLoaded', () => {
 if (navBar) {
 
   navBar.innerHTML = `<nav class="navbar navbar-expand-lg navbar-dark p-1 background-navbar">
-    <div class="container">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-between">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="categories.html">Categorías</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html">Vender</a>
-          </li>
-          <li class="nav-item">
-          
-          <div class="dropdown">
-  <a id="mailUserNav" class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    ${parsedUser.user}
-  </a>
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav w-100 justify-content-between">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="categories.html">Categorías</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="sell.html">Vender</a>
+        </li>
+        <li class="nav-item">
 
-  <ul class="dropdown-menu">
-    <li>
-    <button id="logoutBtn" class="btn btn-outline-secondary m-2 mt-auto mb-auto">Cerrar sesión</button>
-    </li>
-   
-  </ul>
-</div>
-          
-</li>
-        </ul>
-      </div>
+          <div class="dropdown">
+            <a class="nav-link btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              ${parsedUser.user}
+            </a>
+
+            <ul class="dropdown-menu">
+              <li>
+                <button id="logoutBtn" class="btn btn-outline-secondary m-2 mt-auto mb-auto">Cerrar sesión</button>
+              </li>
+
+            </ul>
+          </div>
+
+        </li>
+      </ul>
     </div>
-  </nav> `;
+  </div>
+</nav> `;
 }
