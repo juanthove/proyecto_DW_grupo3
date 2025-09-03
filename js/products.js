@@ -1,5 +1,6 @@
 let currentProductsArray = [];
 let filteredProductsArray = [];
+const AUTOS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 
 function showProductsList(array){
 
@@ -63,7 +64,7 @@ document.querySelectorAll(".sort-buttons button")[2].addEventListener("click", (
 });
 
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(`${PRODUCTS_URL}${localStorage.getItem("catID")}${EXT_TYPE}`).then(function(resultObj){
+    getJSONData(AUTOS_URL).then(function(resultObj){   
         if (resultObj.status === "ok"){
             currentProductsArray = resultObj.data.products;
             filteredProductsArray = [...currentProductsArray];
