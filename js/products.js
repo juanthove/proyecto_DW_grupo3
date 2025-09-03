@@ -1,5 +1,3 @@
-let AUTOS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
-
 let currentProductsArray = [];
 
 function showProductsList(){
@@ -33,7 +31,7 @@ function showProductsList(){
 }
 
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(AUTOS_URL).then(function(resultObj){
+    getJSONData(`${PRODUCTS_URL}${localStorage.getItem("catID")}${EXT_TYPE}`).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductsArray = resultObj.data.products;
             showProductsList()
