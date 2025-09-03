@@ -1,10 +1,11 @@
 let currentProductsArray = [];
+let filteredProductsArray = [];
 
-function showProductsList(){
+function showProductsList(array){
 
     let htmlContentToAppend = "";
-    for(let i = 0; i < currentProductsArray.length; i++){
-        let product = currentProductsArray[i];
+    for(let i = 0; i < array.length; i++){
+        let product = array[i];
 
         htmlContentToAppend += `
         <div class="list-group-item">
@@ -30,11 +31,43 @@ function showProductsList(){
     document.getElementById("products-list-container").innerHTML = htmlContentToAppend;
 }
 
+document.getElementById("filterButton").addEventListener("click", () => {
+    const min = parseInt(document.getElementById("minPrice").value) || 0;
+    const max = parseInt(document.getElementById("maxPrice").value) || Infinity;
+
+    filteredProductsArray = currentProductsArray.filter(p => p.cost >= min && p.cost <= max);
+    showProductsList(filteredProductsArray);
+});
+
+document.getElementById("clearButton").addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById("minPrice").value = "";
+    document.getElementById("maxPrice").value = "";
+    filteredProductsArray = [...currentProductsArray];
+    showProductsList(filteredProductsArray);
+});
+
+document.querySelectorAll(".sort-buttons button")[0].addEventListener("click", () => {
+    filteredProductsArray.sort((a, b) => a.cost - b.cost); 
+    showProductsList(filteredProductsArray);
+});
+
+document.querySelectorAll(".sort-buttons button")[1].addEventListener("click", () => {
+    filteredProductsArray.sort((a, b) => b.cost - a.cost); 
+    showProductsList(filteredProductsArray);
+});
+
+document.querySelectorAll(".sort-buttons button")[2].addEventListener("click", () => {
+    filteredProductsArray.sort((a, b) => b.soldCount - a.soldCount); 
+    showProductsList(filteredProductsArray);
+});
+
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(`${PRODUCTS_URL}${localStorage.getItem("catID")}${EXT_TYPE}`).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentProductsArray = resultObj.data.products;
-            showProductsList()
+            filteredProductsArray = [...currentProductsArray];
+            showProductsList(filteredProductsArray);
         }
     });
 });

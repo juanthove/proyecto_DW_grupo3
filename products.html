@@ -20,6 +20,21 @@
     <div class="text-center p-4">
       <h2>Productos</h2>
     </div>
+
+<div class="sort-buttons">
+  <button>⇅$</button>
+  <button>↑$</button>
+  <button>⇅Rel.</button>
+</div>
+
+<div class="filter-container">
+  <label>Precio</label>
+  <input type="number" id="minPrice" placeholder="Mínimo">
+  <input type="number" id="maxPrice" placeholder="Máximo">
+  <button id="filterButton">Filtrar</button>
+  <a href="#" id="clearButton">Limpiar</a>
+</div>
+
     <div class="container">
       <div class="row">
         <div class="list-group" id="products-list-container">
