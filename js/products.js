@@ -1,6 +1,5 @@
 let currentProductsArray = [];
 let filteredProductsArray = [];
-const AUTOS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 
 function showProductsList(array){
 
@@ -64,8 +63,9 @@ document.querySelectorAll(".sort-buttons button")[2].addEventListener("click", (
 });
 
 document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(AUTOS_URL).then(function(resultObj){   
+    getJSONData(`${PRODUCTS_URL}${localStorage.getItem("catID")}${EXT_TYPE}`).then(function(resultObj){   
         if (resultObj.status === "ok"){
+            document.getElementById("textProduct").innerHTML = `Verás aqui todos los productos de la categoria ${resultObj.data.catName}`;
             currentProductsArray = resultObj.data.products;
             filteredProductsArray = [...currentProductsArray];
             showProductsList(filteredProductsArray);
