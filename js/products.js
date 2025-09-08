@@ -33,6 +33,7 @@ function showProductsList(){
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(`${PRODUCTS_URL}${localStorage.getItem("catID")}${EXT_TYPE}`).then(function(resultObj){
         if (resultObj.status === "ok"){
+            document.getElementById("textProduct").innerHTML = `Verás aqui todos los productos de la categoria ${resultObj.data.catName}`;
             currentProductsArray = resultObj.data.products;
             showProductsList()
         }
