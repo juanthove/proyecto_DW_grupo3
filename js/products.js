@@ -72,3 +72,16 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 });
+
+// Buscador en tiempo real
+document.getElementById("searchInput").addEventListener("input", () => {
+    const searchText = document.getElementById("searchInput").value.toLowerCase();
+
+    const searchedArray = filteredProductsArray.filter(product =>
+        product.name.toLowerCase().includes(searchText) ||
+        product.description.toLowerCase().includes(searchText)
+    );
+
+    showProductsList(searchedArray);
+});
+
