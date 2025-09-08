@@ -66,6 +66,7 @@ document.querySelectorAll(".sort-buttons button")[2].addEventListener("click", (
 document.addEventListener("DOMContentLoaded", function(e){
     getJSONData(AUTOS_URL).then(function(resultObj){   
         if (resultObj.status === "ok"){
+            document.getElementById("textProduct").innerHTML = `Verás aqui todos los productos de la categoria ${resultObj.data.catName}`;
             currentProductsArray = resultObj.data.products;
             filteredProductsArray = [...currentProductsArray];
             showProductsList(filteredProductsArray);
