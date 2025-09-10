@@ -1,14 +1,14 @@
-let currentProductsArray = [];
+let productInfo = [];
 let filteredProductsArray = [];
 
-function showProductsList(array){
+function showProductsList(array) {
 
     let htmlContentToAppend = "";
-    for(let i = 0; i < array.length; i++){
+    for (let i = 0; i < array.length; i++) {
         let product = array[i];
 
         htmlContentToAppend += `
-        <div class="list-group-item">
+        <div class="list-group-item" id="${product.id}" onclick="makeSelection(${product.id})">
             <div class="row">
                 <div>
                     <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
@@ -31,11 +31,17 @@ function showProductsList(array){
     document.getElementById("products-list-container").innerHTML = htmlContentToAppend;
 }
 
+function makeSelection(id) {
+    localStorage.setItem("product-id", id);
+    window.location.href = "product-info.html";
+    
+};
+
 document.getElementById("filterButton").addEventListener("click", () => {
     const min = parseInt(document.getElementById("minPrice").value) || 0;
     const max = parseInt(document.getElementById("maxPrice").value) || Infinity;
 
-    filteredProductsArray = currentProductsArray.filter(p => p.cost >= min && p.cost <= max);
+    filteredProductsArray = productInfo.filter(p => p.cost >= min && p.cost <= max);
     showProductsList(filteredProductsArray);
 });
 
@@ -43,22 +49,22 @@ document.getElementById("clearButton").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("minPrice").value = "";
     document.getElementById("maxPrice").value = "";
-    filteredProductsArray = [...currentProductsArray];
+    filteredProductsArray = [...productInfo];
     showProductsList(filteredProductsArray);
 });
 
 document.querySelectorAll(".sort-buttons button")[0].addEventListener("click", () => {
-    filteredProductsArray.sort((a, b) => a.cost - b.cost); 
+    filteredProductsArray.sort((a, b) => a.cost - b.cost);
     showProductsList(filteredProductsArray);
 });
 
 document.querySelectorAll(".sort-buttons button")[1].addEventListener("click", () => {
-    filteredProductsArray.sort((a, b) => b.cost - a.cost); 
+    filteredProductsArray.sort((a, b) => b.cost - a.cost);
     showProductsList(filteredProductsArray);
 });
 
 document.querySelectorAll(".sort-buttons button")[2].addEventListener("click", () => {
-    filteredProductsArray.sort((a, b) => b.soldCount - a.soldCount); 
+    filteredProductsArray.sort((a, b) => b.soldCount - a.soldCount);
     showProductsList(filteredProductsArray);
 });
 
@@ -84,4 +90,5 @@ document.getElementById("searchInput").addEventListener("input", () => {
 
     showProductsList(searchedArray);
 });
+
 
