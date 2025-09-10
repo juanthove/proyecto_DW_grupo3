@@ -559,6 +559,10 @@ padding: 1rem;
   background-color: #343434;
   padding: 1rem;
 }
+#product-category {
+ border-color: #343434;
+ margin-bottom: 1rem;
+}
 
 @media(max-width: 575px) {
 #card-container {
@@ -672,7 +676,7 @@ height: 100%;
   flex-direction: row;
   justify-content: center;
   margin-top: 5rem;
-  gap: 5rem;
+  gap: 10rem;
   
 
 
@@ -695,10 +699,10 @@ height: 100%;
   justify-content: center;
 }
 #product-price {
-  font-size: 15px
+  font-size: 20px
 }
 #product-sold-count {
-  font-size: large;
+  font-size: 20px;
 }
 .filter-container {
   display: flex;
