@@ -37,4 +37,5 @@ function showProductInfo() {
     document.getElementById("product-price").textContent = `${productInfo.currency} ${productInfo.cost}`;
     document.getElementById("product-sold-count").textContent = `Vendidos: ${productInfo.soldCount}`;
     document.getElementById("product-description").textContent = productInfo.description;
+    document.getElementById("product-category").textContent = productInfo.category;
 };
