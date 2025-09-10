@@ -1,6 +1,5 @@
 let productInfo = [];
 let filteredProductsArray = [];
-const AUTOS_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 
 function showProductsList(array) {
 
@@ -69,12 +68,27 @@ document.querySelectorAll(".sort-buttons button")[2].addEventListener("click", (
     showProductsList(filteredProductsArray);
 });
 
-document.addEventListener("DOMContentLoaded", function (e) {
-    getJSONData(AUTOS_URL).then(function (resultObj) {
-        if (resultObj.status === "ok") {
-            productInfo = resultObj.data.products;
-            filteredProductsArray = [...productInfo];
+document.addEventListener("DOMContentLoaded", function(e){
+    getJSONData(`${PRODUCTS_URL}${localStorage.getItem("catID")}${EXT_TYPE}`).then(function(resultObj){   
+        if (resultObj.status === "ok"){
+            document.getElementById("textProduct").innerHTML = `Verás aqui todos los productos de la categoria ${resultObj.data.catName}`;
+            currentProductsArray = resultObj.data.products;
+            filteredProductsArray = [...currentProductsArray];
             showProductsList(filteredProductsArray);
         }
     });
 });
+
+// Buscador en tiempo real
+document.getElementById("searchInput").addEventListener("input", () => {
+    const searchText = document.getElementById("searchInput").value.toLowerCase();
+
+    const searchedArray = filteredProductsArray.filter(product =>
+        product.name.toLowerCase().includes(searchText) ||
+        product.description.toLowerCase().includes(searchText)
+    );
+
+    showProductsList(searchedArray);
+});
+
+
