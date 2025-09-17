@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             insertImg(); 
             showProductInfo();
             
+            showRelatedProducts();
         }
     });
 });
@@ -38,4 +39,36 @@ function showProductInfo() {
     document.getElementById("product-sold-count").textContent = `Vendidos: ${productInfo.soldCount}`;
     document.getElementById("product-description").textContent = productInfo.description;
     document.getElementById("product-category").textContent = productInfo.category;
+};
+
+function showRelatedProducts() {
+    const productosRelacionados = document.getElementById("productosRelacionados");
+
+    productInfo.relatedProducts.forEach(element => {
+        let contenedorItem = document.createElement("div");
+        contenedorItem.classList.add("list-group-item");
+        contenedorItem.addEventListener("click", () => {
+            makeSelection(element.id);
+        });
+        
+        let imagen = document.createElement("img");
+        imagen.src = element.image;
+        imagen.alt = element.name;
+        imagen.classList.add("img-thumbnail");
+
+        let nombre = document.createElement("h5");
+        nombre.classList.add("d-flex", "justify-content-center", "info-bg", "mb-1");
+        nombre.textContent = element.name;
+
+        contenedorItem.appendChild(imagen);
+        contenedorItem.appendChild(nombre);
+
+        productosRelacionados.appendChild(contenedorItem);
+    });
+}
+
+
+function makeSelection(id) {
+    localStorage.setItem("product-id", id);
+    window.location.href = "product-info.html";
 };
