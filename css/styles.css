@@ -784,3 +784,37 @@ height: 100%;
   box-shadow: 0 2px 8px rgba(83, 192, 251, 0.3);
   outline: none;
 }
+
+
+/*Comentarios y Productos relacionados*/
+#comentariosProductosRelacionados{ /*Contenedor principal*/
+  margin-bottom: 20px;
+}
+
+/*Comentarios*/
+#comentarios {
+  margin: 10px;
+  background-color: #2c2c2c;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+
+
+/*Productos relacionados*/
+#productosRelacionados .list-group-item { 
+  text-align: center;
+  margin: 10px;
+  width: 350px;
+  height: 350px;
+  background-color: #2c2c2c;
+  color: #fff;
+  border-radius: 1%;
+  box-shadow: 0 8px 20px rgba(0.1, 0.1, 0.1, 0.1);
+}
+
+#productosRelacionados .list-group-item:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
