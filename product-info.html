@@ -18,7 +18,7 @@
   <div id="navBarDiv"></div>
 
   <main>
-    
+
     <div class="container" id="card-container">
       <div id="info-container">
         <div id="carousel">
@@ -52,18 +52,19 @@
     </div>
 
     <div class="container" id="comentariosProductosRelacionados">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="p-3 rounded" id="comentarios">
-            <!--Acá va la estructura para los comentarios-->
-          </div>
+      <div class="col" id="comentarios">
+        <div class="comments-container">
+          <div id="comment-score" class="info-bg"></div>
+          <div id="comment-dateTime" class="info-bg"></div>
         </div>
-
-        <div class="col-md-4">
-          <div class="d-flex flex-column gap-3" id="productosRelacionados">
-          </div>
+        <div class="comments-container">
+          <div id="comment-description" class="info-bg"></div>
         </div>
-        
+      </div>
+      <div>
+        <div class="col">
+          <div id="productosRelacionados"></div>
+        </div>
       </div>
     </div>
 
