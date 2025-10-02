@@ -3,12 +3,12 @@ const PRODUCT_ID = `https://japceibal.github.io/emercado-api/products/${productI
 const COMMENTS_ID = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
 let productInfo;
 let productsComments;
-
+console.log(COMMENTS_ID)
 
 document.addEventListener("DOMContentLoaded", async function (e) {
     productInfo = await apiCall(PRODUCT_ID);
     let productsCommentsResponse = await apiCall(COMMENTS_ID);
-    productsComments = productsCommentsResponse[0];
+    productsComments = productsCommentsResponse;
 
     insertImg();
     showProductInfo();
@@ -82,8 +82,42 @@ function makeSelection(id) {
 };
 
 function showProductComments() {
-document.getElementById("comment-score").innerHTML = `Puntuación: ${productsComments.score}`;
-document.getElementById("comment-dateTime").innerHTML = `${productsComments.dateTime}`;
-document.getElementById("comment-description").innerHTML = `${productsComments.user}: ${productsComments.description}`;
+    const commentsContainer = document.getElementById("comments-container");
+    commentsContainer.innerHTML = "";
 
+    productsComments.forEach(c => {
+        commentsContainer.innerHTML += `
+      <div class="comment mb-3">
+       <div id="rating-date">
+        <p>${starsRating(c.score)}</p>
+        <p>${c.dateTime}</p>
+       </div>
+       <div id="user-comment">
+        <p class="me-2">
+        <strong>${c.user}:</strong>
+        </p>
+        <p>${c.description}</p>
+       </div>
+       <hr>
+    `;
+    });
+}
+
+function starsRating(voteAverage) {
+
+    let htmlStars = "";
+
+    for (let i = 1; i <= 5; i++) {
+        if (i <= voteAverage) {
+            htmlStars += `
+      <span class="fa fa-star checked"></span>
+      `;
+        } else {
+            htmlStars += `
+      <span class="fa fa-star"></span>
+      `;
+        }
+    }
+
+    return htmlStars;
 }
