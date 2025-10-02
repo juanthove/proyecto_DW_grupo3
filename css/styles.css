@@ -825,16 +825,20 @@ height: 100%;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.comments-container {
+#comments-container {
   display: flex;
   color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   
 }
 
-#comment-description {
+#rating-date {
   display: flex;
-  width: 100%;
+flex-direction: row;
+justify-content: space-between;
+}
+
+#user-comment {
+  display: flex;
+  flex-direction: row;
 }
