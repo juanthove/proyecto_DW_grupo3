@@ -52,15 +52,44 @@
     </div>
 
     <div class="container" id="comentariosProductosRelacionados">
+      <!-- Aquí reemplazamos el contenido de #comentarios para incorporar formulario y lista -->
       <div class="col" id="comentarios">
-        <div class="comments-container">
-          <div id="comment-score" class="info-bg"></div>
-          <div id="comment-dateTime" class="info-bg"></div>
+        <!-- FORMULARIO DE CALIFICACIÓN (Bootstrap) -->
+        <div id="nuevo-comentario" class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Dejá tu opinión</h5>
+
+            <form id="comment-form" class="row g-2">
+              <div class="col-12">
+                <label for="commentText" class="form-label">Comentario</label>
+                <textarea id="commentText" class="form-control" rows="3" required></textarea>
+              </div>
+
+              <div class="col-6 col-sm-4">
+                <label for="commentScore" class="form-label">Calificación</label>
+                <select id="commentScore" class="form-select" required>
+                  <option value="">Seleccioná</option>
+                  <option value="5">5 - Excelente</option>
+                  <option value="4">4 - Muy bueno</option>
+                  <option value="3">3 - Bueno</option>
+                  <option value="2">2 - Regular</option>
+                  <option value="1">1 - Malo</option>
+                </select>
+              </div>
+
+              <div class="col-6 col-sm-8 d-flex align-items-end justify-content-end">
+                <button type="submit" class="btn btn-primary">Enviar</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="comments-container">
-          <div id="comment-description" class="info-bg"></div>
+
+        <!-- CONTENEDOR DONDE SE MOSTRARÁN TODOS LOS COMENTARIOS (usado por el JS) -->
+        <div id="lista-comentarios" class="mb-4">
+          <!-- El script insertará aquí las tarjetas de comentarios -->
         </div>
       </div>
+
       <div>
         <div class="col">
           <div id="productosRelacionados"></div>
