@@ -50,13 +50,46 @@
         </div>
       </div>
     </div>
-
     <div class="container" id="comentariosProductosRelacionados">
-      <div class="col" id="comentarios">
-        <div class="comments-container">
-          <div id="comment-score" class="info-bg"></div>
-          <div id="comment-dateTime" class="info-bg"></div>
-        </div>
+      <div class="comments-and-related">
+        <div class="col" id="comentarios">
+          <div class="titulo">Comentarios</div>
+          
+          <div class="comments-body">
+            <aside class="controls">
+              <div class="label-block">
+                <label>Calificar:
+                <select id="new-score">
+                  <option value="5">5 - Excelente</option>
+                  <option value="4">4 - Muy bueno</option>
+                  <option value="3">3 - Bueno</option>
+                  <option value="2">2 - Regular</option>       
+                  <option value="1">1 - Malo</option>
+               </select>
+               </label>
+             </div>
+             <button class="btn-send" id="btn-send-comment" type="button">Enviar</button>
+
+             <div id="comment-score" class="info-box">Calificación</div>
+             <div class="small-box">Nombre de usuario</div>
+            </aside>
+
+            <main class="comment-area">
+              <textarea id="new-comment" placeholder="Ingrese su comentario..." rows="4" aria-label="Ingrese su comentario"></textarea>
+              <div class="comment-list" aria-live="polite">
+                <div class="comments-container">
+                <div id="comment-dateTime" class="fecha">Fecha</div>
+              </div>
+              <div class="comments-container">
+              <div id="comment-description" class="info-box"></div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <div class="comments-container">
+        <div id="comment-score" class="info-bg"></div>
+        <div id="comment-dateTime" class="info-bg"></div>
+      </div>
         <div class="comments-container">
           <div id="comment-description" class="info-bg"></div>
         </div>
