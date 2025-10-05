@@ -107,11 +107,11 @@ function showProductComments() {
         const commentHTML = `
             <div class="comment mb-3">
                 <div class="comments-container">
-                    <div class="info-bg">${starsRating(c.score)}</div>
-                    <div class="info-bg">${c.dateTime}</div>
+                    <div class="">${starsRating(c.score)}</div>
+                    <div class="">${c.dateTime}</div>
                 </div>
                 <div class="comments-container">
-                    <div class="info-bg"><strong>${c.user}:</strong> ${c.description}</div>
+                    <div class=""><strong>${c.user}:</strong> ${c.description}</div>
                 </div>
                 <hr>
             </div>
@@ -139,11 +139,11 @@ function addNewComment() {
     const newCommentHTML = `
         <div class="comment mb-3">
             <div class="comments-container">
-                <div class="info-bg">${starsRating(newComment.score)}</div>
-                <div class="info-bg">${newComment.dateTime}</div>
+                <div class="">${starsRating(newComment.score)}</div>
+                <div class="">${newComment.dateTime}</div>
             </div>
             <div class="comments-container">
-                <div class="info-bg"><strong>${newComment.user}:</strong> ${newComment.description}</div>
+                <div class=""><strong>${newComment.user}:</strong> ${newComment.description}</div>
             </div>
             <hr>
         </div>
