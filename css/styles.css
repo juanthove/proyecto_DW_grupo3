@@ -1023,7 +1023,9 @@ justify-content: space-between;
   padding:0.6rem;
   border-radius:6px;
   color:#fff;
+  overflow-y: auto; 
 }
+
 
 .related-list {
   display: flex;
@@ -1043,6 +1045,7 @@ justify-content: space-between;
   display:flex; 
   flex-direction:column; 
   gap:12px; 
+  
 }
 
 
@@ -1052,10 +1055,8 @@ justify-content: space-between;
   display:grid; 
   grid-template-columns: 1fr 100px; 
   gap:12px; 
-  margin-bottom:10px; 
+  
 }
-
-.titulo { background:#dcdcdc; color:#111; padding:8px; text-align:center; border-radius:4px; width:100%; box-sizing:border-box; margin-bottom:8px; }
 
 @media (min-width: 768px) and (max-width: 991px) {
   .page-grid {
