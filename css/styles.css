@@ -661,9 +661,9 @@ padding: 1rem;
 }
 
 #show-product-info {
-  width: 40%;
+width: 40%;
 height: 100%;
-  padding: 1rem;
+padding: 1rem;
  margin-left: 1rem;
  
   }
@@ -776,7 +776,7 @@ height: 100%;
   padding: 0.6rem 1rem;
   font-size: 1rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-  transition: all 0.2s ease-in-out;
+ 
 }
 
 .search-container input[type="search"]:focus {
@@ -786,28 +786,20 @@ height: 100%;
 }
 
 
-/*Comentarios y Productos relacionados*/
-#comentariosProductosRelacionados{ /*Contenedor principal*/
+#comentariosProductosRelacionados{ 
   display: flex;
   flex-direction: row;
   
 }
 
-/*Comentarios*/
 #comentarios {
   margin: 10px;
   background-color: #2c2c2c;
   padding: 10px;
   border-radius: 8px;
-  justify-content: space-between;
-  height: fit-content;
+  max-width: 90%;
 }
- #productosRelacionados {
-  display: flex;
-  flex-direction: column;
- }
 
-/*Productos relacionados*/
 #productosRelacionados .list-group-item { 
   text-align: center;
   margin: 10px;
@@ -816,13 +808,17 @@ height: 100%;
   background-color: #2c2c2c;
   color: #fff;
   border-radius: 1%;
-  box-shadow: 0 8px 20px rgba(0.1, 0.1, 0.1, 0.1);
+  position: relative;
+  left: 20px;
+  
 }
 
 #productosRelacionados .list-group-item:hover {
-  transition: transform 0.3s ease;
-  transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  width: 40%;
+  height: 100%;
+  padding: 1rem;
+  margin-left: 1rem;
 }
 
 .comments-container {
@@ -873,9 +869,9 @@ height: 100%;
 }
 
 .comment-area {
-  display: flex;
   flex-direction: column;
   gap: 12px;
+  max-height: 100px;
 }
 
 #new-comment {
@@ -897,6 +893,7 @@ height: 100%;
   grid-template-columns: 1fr 100px;
   gap: 12px;
   margin-bottom: 10px;
+  
 }
 
 .comments-container > .info-box#comment-description {
@@ -926,14 +923,185 @@ height: 100%;
   padding: 10px;
   color: #111;
   text-align: center;
+  max-width: 140px;
+  margin-left: 40%;
  }
 
  .fecha {
-   background: #dcdcdc;
+  background: #dcdcdc;
   border: 3px solid #191919;
   padding: 8px;
   color: #111;
   box-sizing: border-box;
+  width: 200px;
+}
+
+#barraOpciones {
+  background: #dcdcdc;
+  border: 2px solid #191919;
+  width: 138px;
+}
+
+.page-grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 2rem auto;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "images"
+    "info"
+    "comments"
+    "related";
+}
+
+#area-images { grid-area: images; }
+#area-info   { grid-area: info; }
+#area-comments { grid-area: comments; }
+#area-related  { grid-area: related; }
+
+#area-images .carousel,
+#area-images #carousel {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+#area-images .carousel .carousel-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#area-images .carousel .carousel-item img {
+  width: 90%;
+  height: auto; 
+  max-height: 400px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+.info-wrapper {
+  background: #2c2c2c; 
+  padding: 0.8rem;
+  border-radius: 6px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: stretch;
+}
+.info-wrapper .small-label { width: max-content; margin: 0 auto; }
+.info-wrapper .product-name { text-align:center; padding:1rem; font-size:1.15rem; }
+.price-row { display:flex; gap:1rem; justify-content:center; align-items:center; }
+.price-box { min-width:120px; text-align:center; }
+
+.description-box {
+  background:#5b5959;
+  color:#fff;
+  padding:1rem;
+  min-height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.comments-panel, .related-panel {
+  background:#2c2c2c;
+  padding:0.6rem;
+  border-radius:6px;
+  color:#fff;
+}
+
+.related-list {
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0.8rem;
+}
+
+.comments-body {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.controls { display:flex; flex-direction:column; gap:12px; align-items:stretch; }
+.comment-area { display:flex; flex-direction:column; gap:12px; }
+#new-comment { width:100%; box-sizing:border-box; }
+
+.comments-container { display:grid; grid-template-columns: 1fr 100px; gap:12px; margin-bottom:10px; }
+
+.titulo { background:#dcdcdc; color:#111; padding:8px; text-align:center; border-radius:4px; width:100%; box-sizing:border-box; margin-bottom:8px; }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .page-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "images"
+      "info"
+      "comments"
+      "related";
+  }
+  #area-images .carousel .carousel-inner { height: 360px; }
+  .info-wrapper { padding: 1rem; }
+  .description-box { min-height: 140px; }
+  .related-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 992px) {
+  .page-grid {
+    grid-template-columns: 60% 40%;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "images info"
+      "comments related";
+    gap: 1.75rem;
   }
 
-  
+  #area-images .carousel .carousel-inner { height: 420px; align-items:center; }
+
+  .comments-body { grid-template-columns: 180px 1fr; }
+  .comments-container { grid-template-columns: 1fr 160px; }
+
+  .related-list { display:flex; flex-direction:column; gap:1rem; }
+}
+
+@media (max-width: 480px) {
+  #area-images .carousel .carousel-inner { height: 160px; }
+  .product-name { font-size: 1rem; padding: 0.6rem; }
+  .description-box { min-height: 90px; padding: 0.6rem; }
+  .comments-body { grid-template-columns: 1fr; }
+  .comments-container { grid-template-columns: 1fr; }
+  .related-list { grid-template-columns: 1fr; }
+}
+
+.page-grid * { box-sizing: border-box; }
+
+#area-images {
+  grid-area: images;
+  background: #3d3b3b;
+  padding: 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Solucion conflicto Bootstrap */
+#area-images .carousel .carousel-inner {
+  display: block !important;      
+  width: 100% !important;
+  height: auto !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
