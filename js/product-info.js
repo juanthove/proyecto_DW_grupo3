@@ -3,7 +3,6 @@ const PRODUCT_ID = `https://japceibal.github.io/emercado-api/products/${productI
 const COMMENTS_ID = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
 let productInfo;
 let productsComments;
-console.log(COMMENTS_ID)
 
 document.addEventListener("DOMContentLoaded", async function (e) {
     productInfo = await apiCall(PRODUCT_ID);
@@ -15,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
     showRelatedProducts();
     showProductComments();
 
-
+    document.getElementById('btn-send-comment').addEventListener('click', addNewComment);
 });
 
 async function apiCall(url) {
@@ -81,28 +80,6 @@ function makeSelection(id) {
     window.location.href = "product-info.html";
 };
 
-function showProductComments() {
-    const commentsContainer = document.getElementById("comments-container");
-    commentsContainer.innerHTML = "";
-
-    productsComments.forEach(c => {
-        commentsContainer.innerHTML += `
-      <div class="comment mb-3">
-       <div id="rating-date">
-        <p>${starsRating(c.score)}</p>
-        <p>${c.dateTime}</p>
-       </div>
-       <div id="user-comment">
-        <p class="me-2">
-        <strong>${c.user}:</strong>
-        </p>
-        <p>${c.description}</p>
-       </div>
-       <hr>
-    `;
-    });
-}
-
 function starsRating(voteAverage) {
 
     let htmlStars = "";
@@ -120,4 +97,60 @@ function starsRating(voteAverage) {
     }
 
     return htmlStars;
+}
+
+function showProductComments() {
+    const existingComments = document.querySelectorAll('.comment');
+    existingComments.forEach(comment => comment.remove());
+
+    productsComments.forEach(c => {
+        const commentHTML = `
+            <div class="comment mb-3">
+                <div class="comments-container">
+                    <div class="info-bg">${starsRating(c.score)}</div>
+                    <div class="info-bg">${c.dateTime}</div>
+                </div>
+                <div class="comments-container">
+                    <div class="info-bg"><strong>${c.user}:</strong> ${c.description}</div>
+                </div>
+                <hr>
+            </div>
+        `;
+        document.querySelector('.comment-list').insertAdjacentHTML('afterbegin', commentHTML);
+    });
+}
+
+function addNewComment() {
+    const commentText = document.getElementById('new-comment').value;
+    const scoreValue = document.getElementById('barraOpciones').value;
+
+    if (!commentText) {
+        alert("Por favor escribe un comentario");
+        return;
+    }
+
+    const newComment = {
+        score: parseInt(scoreValue),
+        description: commentText,
+        dateTime: new Date().toISOString().split('T')[0],
+        user: "Usuario Actual"
+    };
+
+    const newCommentHTML = `
+        <div class="comment mb-3">
+            <div class="comments-container">
+                <div class="info-bg">${starsRating(newComment.score)}</div>
+                <div class="info-bg">${newComment.dateTime}</div>
+            </div>
+            <div class="comments-container">
+                <div class="info-bg"><strong>${newComment.user}:</strong> ${newComment.description}</div>
+            </div>
+            <hr>
+        </div>
+    `;
+
+    document.querySelector('.comment-list').insertAdjacentHTML('afterbegin', newCommentHTML);
+
+    document.getElementById('new-comment').value = '';
+    document.getElementById('barraOpciones').value = '5';
 }
