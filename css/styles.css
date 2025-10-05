@@ -803,29 +803,26 @@ padding: 1rem;
 #productosRelacionados .list-group-item { 
   text-align: center;
   margin: 10px;
-  width: 20vw;
+  width: 80%;
   height: auto;
+  margin: 0 auto;  
   background-color: #2c2c2c;
   color: #fff;
   border-radius: 1%;
-  position: relative;
-  left: 20px;
-  
 }
 
+
 #productosRelacionados .list-group-item:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.03);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  width: 40%;
-  height: 100%;
-  padding: 1rem;
-  margin-left: 1rem;
 }
 
 #comments-container {
   display: flex;
   color: white;
   flex-direction: column;
-  
+  position: relative;
 }
 
 #rating-date {
@@ -927,11 +924,12 @@ justify-content: space-between;
 .titulo {
   background-color: #dcdcdc;
   border: 3px solid #191919;
-  padding: 10px;
   color: #111;
+  max-width: 60%;
+  padding: 0.4rem 0.8rem;
+  margin: 0 auto 1rem auto;
   text-align: center;
-  max-width: 140px;
-  margin-left: 40%;
+  
  }
 
  .fecha {
@@ -1028,9 +1026,9 @@ justify-content: space-between;
 }
 
 .related-list {
-  display:grid;
-  grid-template-columns:1fr;
-  gap:0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .comments-body {
@@ -1040,10 +1038,22 @@ justify-content: space-between;
   align-items: start;
 }
 .controls { display:flex; flex-direction:column; gap:12px; align-items:stretch; }
-.comment-area { display:flex; flex-direction:column; gap:12px; }
+
+.comment-area { 
+  display:flex; 
+  flex-direction:column; 
+  gap:12px; 
+}
+
+
 #new-comment { width:100%; box-sizing:border-box; }
 
-.comments-container { display:grid; grid-template-columns: 1fr 100px; gap:12px; margin-bottom:10px; }
+.comments-container { 
+  display:grid; 
+  grid-template-columns: 1fr 100px; 
+  gap:12px; 
+  margin-bottom:10px; 
+}
 
 .titulo { background:#dcdcdc; color:#111; padding:8px; text-align:center; border-radius:4px; width:100%; box-sizing:border-box; margin-bottom:8px; }
 
@@ -1064,7 +1074,7 @@ justify-content: space-between;
 
 @media (min-width: 992px) {
   .page-grid {
-    grid-template-columns: 60% 40%;
+    /*grid-template-columns: 60% 40%; Saqué esto porque no se veía el borde blanco a la derecha desde 992px a 1250px*/
     grid-template-rows: auto auto;
     grid-template-areas:
       "images info"
