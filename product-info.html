@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>eMercado - Todo lo que busques está aquí</title>
-
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-
-  <script src="js/auto-login.js"></script>
-</head>
-
-<body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>eMercado - Todo lo que busques está aquí</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    
+    <script src="js/auto-login.js"></script>
+  </head>
+  
+  <body>
   <div id="navBarDiv"></div>
 
   <main>
+    
+    <div class="page-grid">
 
-    <div class="container" id="card-container">
-      <div id="info-container">
+      <section id="area-images" class="panel">
         <div id="carousel">
           <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
-            <div class="carousel-inner" id="carousel-img-insert">
-
-            </div>
+            <div class="carousel-inner" id="carousel-img-insert"></div>
+            
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="sr-only">Previous</span>
@@ -35,50 +33,91 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
+        </div>
+      </section>
+
+      <aside id="area-info" class="panel">
+        <div class="info-wrapper">
+          <div id="product-category" class="info-bg small-label"></div>
+          <div id="product-name" class="info-bg product-name"></div>
+
+          <div id="price-count" class="price-row">
+            <div id="product-price" class="info-bg price-box"></div>
+            <div id="product-sold-count" class="info-bg price-box"></div>
+          </div>
+
+
+
+          <div id="product-description" class="description-box"></div>
+        </div>
+      </aside>
+
+      <section id="area-comments" class="panel">
+        <div class="comments-panel">
+          <div class="titulo">Comentarios</div>
+
+          <div class="comments-body">
+            <aside class="controls">
+              <div class="label-block">
+                <label>Calificar:
+                  <select id="barraOpciones">
+                    <option value="5">5 - Excelente</option>
+                    <option value="4">4 - Muy bueno</option>
+                    <option value="3">3 - Bueno</option>
+                    <option value="2">2 - Regular</option>
+                    <option value="1">1 - Malo</option>
+                  </select>
+                </label>
+              </div>
+
+              <button class="btn-send" id="btn-send-comment" type="button">Enviar</button>
+
+              <div id="comment-score" class="info-box">Calificación</div>
+              <div class="small-box">Usuario:</div>
+            </aside>
+
+            <main class="comment-area">
+              <textarea id="new-comment" placeholder="Ingrese su comentario..." rows="4" aria-label="Ingrese su comentario"></textarea>
+
+              <div class="comment-list" aria-live="polite">
+                <div class="comments-container">
+                  <div id="comment-dateTime" class="fecha">Fecha</div>
+                </div>
+                <div class="comments-container">
+                  <div id="comment-description" class="info-box"></div>
+                </div>
+              </div>
+            </main>
+          </div>
 
         </div>
-        <div class="text-center" id="show-product-info">
-          <div>
-            <div id="product-category"></div>
-            <div id="product-name" class="info-bg"></div>
-            <div id="price-count">
-              <div id="product-price" class="info-bg"></div>
-              <div id="product-sold-count" class="info-bg"></div>
-            </div>
-            <div id="product-description"></div>
+      </section>
+
+      <aside id="area-related" class="panel">
+        <div class="related-panel">
+          <div class="titulo">Productos relacionados</div>
+          <div id="productosRelacionados" class="related-list">
+
           </div>
         </div>
-      </div>
-    </div>
+      </aside>
 
-    <div class="container" id="comentariosProductosRelacionados">
-      <div class="col" id="comentarios">
-        <div id="comments-container">
-        </div>
-        <div class="comments-container">
-        </div>
-      </div>
-      <div>
-        <div class="col">
-          <div id="productosRelacionados"></div>
-        </div>
-      </div>
     </div>
-
   </main>
+
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
-      </p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
     </div>
   </footer>
+
   <div id="spinner-wrapper">
-    <div class="lds-ring">
-    </div>
+    <div class="lds-ring"></div>
   </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/product-info.js"></script>
