@@ -129,11 +129,14 @@ function addNewComment() {
         return;
     }
 
+    const sessionData = JSON.parse(localStorage.getItem('myAppSession'));
+    const userName = sessionData && sessionData.logged ? sessionData.user : "Usuario Anónimo";
+
     const newComment = {
         score: parseInt(scoreValue),
         description: commentText,
         dateTime: new Date().toISOString().split('T')[0],
-        user: "Usuario Actual"
+        user: userName
     };
 
     const newCommentHTML = `
