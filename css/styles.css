@@ -1124,3 +1124,177 @@ justify-content: space-between;
   overflow: visible !important;
 
 }
+
+
+/*Modo Oscuro*/
+body.oscuro{
+    background-color: #272727;
+    color: rgb(255, 255, 255);
+}
+
+body.oscuro p{
+  color: white;
+}
+
+body.oscuro h1, body.oscuro h2, body.oscuro h3, body.oscuro h4, body.oscuro h5, body.oscuro h6{
+  color: white;
+}
+
+/*Navbar*/
+body.oscuro .background-navbar {
+  background-color: rgb(70, 70, 70); /*Cambiar el color de la nav bar*/
+}
+
+body.oscuro .navbar a{
+  color: white !important;
+}
+
+/*Index*/
+body.oscuro .album{
+  background-color: #1b1b1b;
+}
+
+body.oscuro .album .card {
+  background-color: #2a2a2a;
+}
+
+body.oscuro .album .btn-light {
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+}
+
+body.oscuro .custom-card {
+    background-color: #2a2a2a;
+    color: white;
+}
+
+body.oscuro .album.bg-light {
+  background-color: #222222;
+}
+
+body.oscuro .jumbotron{
+  height: 50vh;
+  padding: 5em inherit;
+  margin-bottom: 0;
+  background-color: #000000;
+  background: url('../img/cover_backNegro.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+/*Categorias*/
+body.oscuro .filter-section button{
+  border-color: transparent;
+}
+
+body.oscuro .filter-container input:focus{ /*Borde al seleccionar el precio en el filtro*/
+  outline: none;
+  box-shadow: 0 0 4px #000000;
+  border-color: #000000;
+}
+
+body.oscuro .filter-container{
+  background-color: rgb(48, 48, 48);
+}
+
+body.oscuro .filter-container label{
+  color: white;
+}
+
+body.oscuro .list-group-item{
+  background-color: transparent;
+  border-color: rgb(129, 129, 129);
+}
+
+body.oscuro .list-group-item:hover{
+  background-color: rgb(78, 78, 78);
+}
+
+body.oscuro small{
+  color: white; /*Color de la cantidad de articulos*/
+}
+
+/*body.oscuro .img-thumbnail{ Color del borde de las imagenes
+  border-color: rgb(80, 80, 80); 
+  background-color: transparent;
+}*/
+
+/*Productos*/
+body.oscuro label{
+  color: white;
+}
+
+
+/*Producto Info*/
+
+
+/*Vender*/
+body.oscuro #total{
+  color: white;
+}
+
+body.oscuro .descripcion{
+  color: rgb(216, 216, 216);
+}
+
+body.oscuro #totalCostText{
+  color: white;
+}
+
+/*Imagenes cambiar modo*/
+#sol{
+  width: 40%;
+  height: auto;
+}
+
+#luna{
+  width: 40%;
+  height: auto;
+}
+
+#modoOscuro {
+    width: 3.90em;
+    height: 1.95em;
+    padding: 0 0.33em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    border-radius: 6.7em;
+    border: rgb(87, 87, 87) solid 0.2em;
+    background-color: rgba(216, 111, 111, 0.05);
+    cursor: pointer;
+    margin-top: 0.2em;
+}
+
+#modoOscuro::before{ /*Crear el pseudoelemento del circulo blanco*/
+    content: "";
+    position: absolute;
+    height: 1.7em;
+    width: 1.7em;
+    border-radius: 50%;
+    background-color: white;
+    border: solid thin black;
+    left: 0;
+    right: unset;
+}
+
+#modoOscuro.activo::before{ /*Crear el pseudoelemento del circulo blanco cuando está activo*/
+    right: 0;
+    left: unset;
+    border: solid thin white;
+}
+
+/*Modo Claro*/
+small{
+  color: #777; /*Poner el color del small como si fuera text-muted*/
+}
+
+span{
+  color: #777;
+}
+

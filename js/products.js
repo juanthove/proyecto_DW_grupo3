@@ -19,7 +19,7 @@ function showProductsList(array) {
                         </div>
                     <div class="d-flex justify-content-between mt-1 mb-2" >
                         <p class="mb-1"><b>${product.currency} ${product.cost}</b></p>
-                        <small class="text-muted">${product.soldCount} vendidos</small> 
+                        <small>${product.soldCount} vendidos</small> 
                     </div>
                     <p class="mb-1 description">${product.description}</p>
                 </div>
