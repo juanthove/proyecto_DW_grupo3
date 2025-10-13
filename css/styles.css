@@ -1298,3 +1298,24 @@ span{
   color: #777;
 }
 
+/* Página my-profile */
+.profile-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+#profilePic {
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+#profilePic:hover {
+  transform: scale(1.05);
+}
+
+.btn-outline-primary {
+  border-radius: 20px;
+}
