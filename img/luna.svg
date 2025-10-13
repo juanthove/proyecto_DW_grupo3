@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="360"
+   height="360"
+   viewBox="0 0 360 360"
+   sodipodi:docname="lunaBlanca.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#505050"
+     inkscape:zoom="1.6008112"
+     inkscape:cx="141.49077"
+     inkscape:cy="219.57618"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1">
+    <path
+       style="fill:#ffffff"
+       d="M 169.5,326.31149 C 21.083713,307.07462 -11.067016,88.436676 127.40633,40.05754 c 21.19463,-7.404877 81.61384,-8.343449 92.78175,-1.441303 0.53188,0.328725 -5.03034,3.155136 -12.36051,6.280914 C 159.72155,65.410843 137.93804,85.741705 125.2157,122 c -22.93335,65.35939 10.8602,122.53987 79.49435,134.50867 36.69635,6.39931 66.65231,-3.32603 108.78995,-35.31914 9.63903,-7.31846 9.83619,-7.02662 4.45462,6.5938 C 289.76003,299.14211 235.86307,334.9131 169.5,326.31149 Z"
+       id="path1" />
+  </g>
+</svg>
