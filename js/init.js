@@ -70,6 +70,9 @@ if (navBar) {
         <li class="nav-item">
           <a class="nav-link" href="sell.html">Vender</a>
         </li>
+        <li>
+          <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+        </li>
         <li class="nav-item">
 
           <div class="dropdown">
