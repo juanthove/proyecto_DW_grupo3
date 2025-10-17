@@ -3,7 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const profilePic = document.getElementById("profilePic");
     const imagenInput = document.getElementById("imagen");
 
-    //Cargamos los datos guardados.
+    //Chequeamos si hay sesión activa.
+    let sessionUser = null;
+    try {
+        const session = JSON.parse(localStorage.getItem("myAppSession"));
+        if (session && session.logged) {
+            sessionUser = session.user;
+        }
+    } catch (e) {
+        console.warn("⚠️ Sesión inexistente.")
+    }
+
+    //Cargamos los datos guardados si existen.
     let userData = {};
     try {
         userData = JSON.parse(localStorage.getItem("perfilUsuario")) || {};
@@ -11,6 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
         console.warn("⚠️ perfilUsuario no es JSON válido. Se limpia.");
         localStorage.removeItem("perfilUsuario");
         userData = {};
+    }
+
+    //Si no hay perfil guardado, precargamos el usuario del login en el campo email.
+    if (!userData.email && sessionUser) {
+        userData.email = sessionUser;
     }
 
     //Llenamos campos del form.
