@@ -35,13 +35,19 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("email").value = userData.email || "";
     document.getElementById("telefono").value = userData.telefono || "";
 
-    //Cambiar imagen del perfil, no se guarda.
+    const savedProfilePic = localStorage.getItem("profilePic");
+    if (savedProfilePic) {
+        profilePic.src = savedProfilePic;
+    }
+
+    //Cambiar imagen del perfil, se guarda.
     imagenInput.addEventListener("change", (e) => {
         const file = e.target.files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = () => {
                 profilePic.src = reader.result;
+                localStorage.setItem("profilePic", reader.result);
             };
             reader.readAsDataURL(file);
         }        
