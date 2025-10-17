@@ -1,5 +1,5 @@
+let productInfo = [];
 let filteredProductsArray = [];
-let relReverse = false;
 
 function showProductsList(array) {
 
@@ -41,7 +41,7 @@ document.getElementById("filterButton").addEventListener("click", () => {
     const min = parseInt(document.getElementById("minPrice").value) || 0;
     const max = parseInt(document.getElementById("maxPrice").value) || Infinity;
 
-    filteredProductsArray = currentProductsArray.filter(p => p.cost >= min && p.cost <= max);
+    filteredProductsArray = productInfo.filter(p => p.cost >= min && p.cost <= max);
     showProductsList(filteredProductsArray);
 });
 
@@ -49,7 +49,7 @@ document.getElementById("clearButton").addEventListener("click", (e) => {
     e.preventDefault();
     document.getElementById("minPrice").value = "";
     document.getElementById("maxPrice").value = "";
-    filteredProductsArray = [...currentProductsArray];
+    filteredProductsArray = [...productInfo];
     showProductsList(filteredProductsArray);
 });
 
@@ -64,14 +64,7 @@ document.querySelectorAll(".sort-buttons button")[1].addEventListener("click", (
 });
 
 document.querySelectorAll(".sort-buttons button")[2].addEventListener("click", () => {
-    if (relReverse) {
-        filteredProductsArray.sort((a, b) => b.soldCount - a.soldCount);
-        relReverse = false;
-    } else {
-        filteredProductsArray.sort((a, b) => a.soldCount - b.soldCount);
-        relReverse = true;
-    }
-
+    filteredProductsArray.sort((a, b) => b.soldCount - a.soldCount);
     showProductsList(filteredProductsArray);
 });
 
