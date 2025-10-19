@@ -104,7 +104,6 @@ if (navBar) {
 
 //Boton para cambiar el modo
 const botonModoOscuro = document.getElementById("modoOscuro");
-const fondo = document.getElementById("fondo");
 
 /*Modo Oscuro*/
 function actualizarModo(){

@@ -291,7 +291,7 @@ button#btnLogin:hover {
   text-decoration: underline;
 }
 .background-navbar {
-  background-color: #2c2c2c;
+  background-color: rgb(44, 44, 44);
 }
 
 
@@ -1128,8 +1128,7 @@ justify-content: space-between;
 
 /*Modo Oscuro*/
 body.oscuro{
-    background-color: #272727;
-    color: rgb(255, 255, 255);
+  background-color: #272727;
 }
 
 body.oscuro p{
@@ -1142,12 +1141,38 @@ body.oscuro h1, body.oscuro h2, body.oscuro h3, body.oscuro h4, body.oscuro h5, 
 
 /*Navbar*/
 body.oscuro .background-navbar {
-  background-color: rgb(70, 70, 70); /*Cambiar el color de la nav bar*/
+  background-color: rgb(51, 51, 51); /*Cambiar el color de la nav bar*/
 }
 
 body.oscuro .navbar a{
   color: white !important;
 }
+
+/*Login*/
+body.login-page.oscuro {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../img/login-backNegro.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body.oscuro .signin {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.5);
+  background-color: rgba(51, 51, 51, 0.6);
+}
+
+body.oscuro button#btnLogin {
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.5);
+}
+
+body.oscuro button#btnLogin:hover {
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
 
 /*Index*/
 body.oscuro .album{
@@ -1165,8 +1190,8 @@ body.oscuro .album .btn-light {
 }
 
 body.oscuro .custom-card {
-    background-color: #2a2a2a;
-    color: white;
+  background-color: #2a2a2a;
+  color: white;
 }
 
 body.oscuro .album.bg-light {
@@ -1198,7 +1223,8 @@ body.oscuro .filter-container input:focus{ /*Borde al seleccionar el precio en e
 }
 
 body.oscuro .filter-container{
-  background-color: rgb(48, 48, 48);
+  background-color: #303030;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
 }
 
 body.oscuro .filter-container label{
@@ -1224,16 +1250,41 @@ body.oscuro small{
 }*/
 
 /*Productos*/
-body.oscuro label{
+body.oscuro label:not(.btn){
   color: white;
 }
 
+body.oscuro .search-container input[type="search"]{
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.5);
+}
+
+body.oscuro #products-list-container .list-group-item { /*Sombreado color blanco*/
+  box-shadow: 0 8px 20px rgba(254.9, 254.9, 254.9, 0.1);
+}
+
+body.oscuro #products-list-container .list-group-item:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
 
 /*Producto Info*/
+body.oscuro .comments-body label {
+  color: inherit;
+}
 
+body.oscuro #productosRelacionados .list-group-item:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+}
 
 /*Vender*/
 body.oscuro #total{
+  color: white;
+}
+
+body.oscuro #comissionText{
+  color: white;
+}
+
+body.oscuro #productCostText{
   color: white;
 }
 
@@ -1244,6 +1295,38 @@ body.oscuro .descripcion{
 body.oscuro #totalCostText{
   color: white;
 }
+
+body.oscuro .form-control{
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.5);
+}
+
+body.oscuro .modal-content{
+  background-color: #272727;
+}
+
+body.oscuro .modal-content hr{
+  color: rgb(245, 245, 245);
+}
+
+/*Perfil*/
+body.oscuro .profile-container{
+  background-color: #303030;
+  border-color: rgb(102, 102, 102) !important;
+}
+
+body.oscuro #profileForm label{
+  color: white;
+}
+
+body.oscuro #profilePic{
+  border-color: rgb(161, 161, 161) !important;
+}
+
+#logoNavBar{
+  width: 4%;
+  height: auto;
+}
+
 
 /*Imagenes cambiar modo*/
 #sol{
@@ -1318,4 +1401,8 @@ span{
 
 .btn-outline-primary {
   border-radius: 20px;
+}
+
+.profile-container{
+  background-color:rgb(248, 249, 250);
 }

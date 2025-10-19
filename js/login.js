@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+  let modoOscuro = (localStorage.getItem("modo") === "Negro");
+
+  //Funcion que cambia el modo
+  function getModoTexto(){
+    return modoOscuro ? "Negro" : "Blanco"; 
+  }
+
   const btnLogin = document.getElementById('btnLogin');
   const usuarioInput = document.getElementById('usuario');
   const passwordInput = document.getElementById('password');
@@ -66,4 +74,35 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+
+  //Boton para cambiar el modo
+  const botonModoOscuro = document.getElementById("modoOscuro");
+  const divImagen = document.getElementById("imagenEMercado");
+
+  /*Modo Oscuro*/
+  function actualizarModo(){
+    //Cambiar color letra y fondo
+    if (modoOscuro) {
+      document.body.classList.add("oscuro");
+      botonModoOscuro.classList.remove("activo"); //Desactivar el boton para que se mueva a la izquierda
+      divImagen.innerHTML = `<img src="img/loginNegro.png" alt="Logo eMercado" class="img-fluid logo-login mb-4">`; //Inserto la imagen EMercado con las letras blancas
+    } else {
+      document.body.classList.remove("oscuro");
+      botonModoOscuro.classList.add("activo"); //Activar el boton para que se mueva a la derecha
+      divImagen.innerHTML = `<img src="img/login.png" alt="Logo eMercado" class="img-fluid logo-login mb-4">`; //Inserto la imagen EMercado con las letras negras
+    }
+  } 
+
+  botonModoOscuro.addEventListener("click", function(){
+    modoOscuro = !modoOscuro;
+    localStorage.setItem("modo", getModoTexto());
+    actualizarModo();
+  });
+
+  //Actualizar el modo al iniciar la pagina
+  actualizarModo();
+
+
 });
+
