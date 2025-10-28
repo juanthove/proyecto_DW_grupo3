@@ -14,13 +14,28 @@
 </head>
 
 <body>
-<div id="navBarDiv"></div>
- 
+  <div id="navBarDiv"></div>
+
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="row">
+        <div class="col">
+          <div id="products-list-container"></div>
+        </div>
+        <div class="col">
+          <div class="cart-resume">
+            <ol class="list-group list-group-numbered">
+              <h4>Resumen de compra</h4>
+                <div id="cart-list-items">
+
+                </div>
+              <button type="button" class="btn btn-primary" style="margin-top: 5px;">Finalizar Comprar</button>
+            </ol>
+          </div>
+        </div>
       </div>
+    </div>
+    </div>
     </div>
   </main>
   <footer class="text-muted">
@@ -28,7 +43,8 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
   <div id="spinner-wrapper">
@@ -42,6 +58,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+
 </body>
 
 </html>
