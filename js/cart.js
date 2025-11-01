@@ -21,19 +21,11 @@ function generateProductsItems(products) {
                 <h4 class="mb-1">${product.titulo}</h4>
             </div>
             <div class="d-flex flex-column mt-1 mb-2">
-                <div class="row">
-                    <div class="col">
-                        <p class="mb-1"><b>${product.moneda} ${product.precio}</b></p>
+                <div class="row align-items-center">
+                    <div class="col-6">
+                        <p class="mb-1 mt-4 pt-2 fs-5"><b>${product.moneda} ${product.precio}</b></p>
                     </div>
-                    <div class="col">
-                        <p>SubTotal: $${parseInt(product.precio) * parseInt(product.cantidad)}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <button type="button" class="btn btn-danger btn-sm btn-delete">Eliminar</button>
-                    </div>
-                    <div class="col">
+                    <div class="col-4">
                         <div class="mb-1">
                             <label class="form-label small text-muted">Cantidad</label>
                             <div class="input-group input-group-sm" style="width: 120px;">
@@ -43,7 +35,10 @@ function generateProductsItems(products) {
                             </div>
                         </div>
                      </div>
-                  </div>
+                </div>
+                    <div class="col mt-5">
+                        <button type="button" class="btn btn-danger btn-sm btn-delete">Eliminar</button>
+                    </div>
                </div>
             </div>
          </div>
@@ -65,7 +60,7 @@ function generateProductsItems(products) {
     } else {
         container.innerHTML = `
             <div id="void-cart-message">
-              <p>No hay productos en tu carrito.</p>
+              <p class="mt-3">No hay productos en tu carrito.</p>
             </div>`;
     }
 }
