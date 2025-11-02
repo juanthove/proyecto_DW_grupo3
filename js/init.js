@@ -70,6 +70,12 @@ if (navBar) {
         <li class="nav-item">
           <a class="nav-link" href="sell.html">Vender</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link position-relative" href="cart.html">
+            Mi carrito
+            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
+          </a>
+        </li>
         <li>
           <a class="nav-link" href="my-profile.html">Mi perfil</a>
         </li>
