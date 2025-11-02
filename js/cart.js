@@ -12,23 +12,23 @@ function generateProductsItems(products) {
         for (let product of products) {
             htmlContentToAppend += `
             <div class="list-group-item-cart" data-id="${product.id}">
-    <div class="row">
-        <div class="col">
-            <img src="${product.imgUrl}" class="img-thumbnail">
+    <div class="row align-items-stretch">
+        <div class="col-sm-6">
+            <img src="${product.imgUrl}" class="img-thumbnail img-fluid">
         </div>
-        <div class="col" style="margin-top: 30px">
+        <div class="col">
             <div class="d-flex w-100 justify-content-center">
-                <h4 class="mb-1">${product.titulo}</h4>
+                <h4 class="mb-1 mt-4">${product.titulo}</h4>
             </div>
             <div class="d-flex flex-column mt-1 mb-2">
                 <div class="row align-items-center">
                     <div class="col-6">
                         <p class="mb-1 mt-4 pt-2 fs-5"><b>${product.moneda} ${product.precio}</b></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6 col-sm-5">
                         <div class="mb-1">
                             <label class="form-label small text-muted">Cantidad</label>
-                            <div class="input-group input-group-sm" style="width: 120px;">
+                            <div class="input-group input-group-sm" ">
                                 <button class="btn btn-outline-secondary btn-minus" type="button">−</button>
                                 <input type="text" class="form-control text-center quantity-input" value="${product.cantidad}" readonly>
                                 <button class="btn btn-outline-secondary btn-plus" type="button">+</button>
@@ -78,6 +78,7 @@ function deleteProduct(productId) {
 
 function updateResume(products) {
     let htmlContentToAppend = "";
+    let total = 0;
 
     if (products.length === 0) {
         document.getElementById("cart-list-items").innerHTML = `<li class="list-group-item">Carrito vacío</li>`;
@@ -85,7 +86,8 @@ function updateResume(products) {
     }
 
     products.forEach(product => {
-        const subTotal = parseInt(product.precio);
+        const subTotal = parseInt(product.precio) * parseInt(product.cantidad);
+        total += subTotal;
         htmlContentToAppend += `<li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
                 <div class="ms-2 me-auto">
                   <div class="fw-bold">${product.titulo}</div>
@@ -94,6 +96,10 @@ function updateResume(products) {
                 <span class="badge bg-primary rounded-pill">${parseInt(product.cantidad)}</span>
               </li>`;
     });
+
+    htmlContentToAppend += `<li class="list-group-item d-flex justify-content-center align-items-start bg-secondary">
+                                <div class="fw-bold"> Total: ${total}</div>
+                            </li>`;
 
     document.getElementById("cart-list-items").innerHTML = htmlContentToAppend;
 }
