@@ -157,3 +157,51 @@ function addNewComment() {
     document.getElementById('new-comment').value = '';
     document.getElementById('barraOpciones').value = '5';
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const infoArea = document.getElementById("area-info");
+    const buyBtn = document.createElement("button");
+    buyBtn.textContent = "Comprar";
+    buyBtn.classList.add("btn", "btn-success", "mt-3");
+    infoArea.appendChild(buyBtn);
+
+    buyBtn.addEventListener("click", () => {
+        const product = {
+            id: productInfo.id,
+            titulo: productInfo.name,
+            precio: productInfo.cost,
+            moneda: productInfo.currency,
+            imgUrl: productInfo.images[0],
+            cantidad: 1
+        };
+
+        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || { productos: [] };
+
+        const existing = cartItems.productos.find(p => p.id === product.id);
+        if (existing) {
+            existing.cantidad++;
+        } else {
+            cartItems.productos.push(product);
+        }
+
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+        updateCartBadge();
+
+        window.location.href = "cart.html";
+    });
+
+    updateCartBadge();
+});
+
+function updateCartBadge() {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    let total = 0;
+
+    if (cartItems && cartItems.productos.length > 0) {
+        total = cartItems.productos.reduce((acc, p) => acc + p.cantidad, 0);
+    }
+
+    const badge = document.getElementById("cart-badge");
+    if (badge) badge.textContent = total > 0 ? total : "";
+}
