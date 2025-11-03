@@ -68,7 +68,7 @@ function generateProductsItems(products) {
 function deleteProduct(productId) {
     let cartItems = JSON.parse(localStorage.getItem("cartItems"));
 
-    cartItems.productos = cartItems.productos.filter(p => p.id !== productId);
+    cartItems.productos = cartItems.productos.filter(p => Number(p.id) !== Number(productId));
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
 

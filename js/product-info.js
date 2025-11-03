@@ -197,9 +197,6 @@ function addNewComment() {
 document.addEventListener("DOMContentLoaded", function () {
     const infoArea = document.getElementById("area-info");
     const buyBtn = document.createElement("button");
-    buyBtn.textContent = "Comprar";
-    buyBtn.classList.add("btn", "btn-success", "mt-3");
-    infoArea.appendChild(buyBtn);
 
     buyBtn.addEventListener("click", () => {
         const product = {
