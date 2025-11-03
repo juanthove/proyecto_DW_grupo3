@@ -51,6 +51,21 @@ let getJSONData = function (url) {
     });
 }
 
+function updateCartBadge() {
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || { productos: [] };
+    let total = 0;
+
+    if (cartItems && cartItems.productos.length > 0) {
+        total = cartItems.productos.reduce((acc, p) => acc + (parseInt(p.cantidad) || 1), 0);
+    }
+
+    const badge = document.getElementById("cart-badge");
+    if (badge) {
+        badge.textContent = total > 0 ? total : "";
+        badge.style.display = total > 0 ? "inline" : "none";
+    }
+}
+
 if (navBar) {
 
   navBar.innerHTML = `<nav class="navbar navbar-expand-lg navbar-dark p-1 background-navbar">
@@ -73,7 +88,7 @@ if (navBar) {
         <li class="nav-item">
           <a class="nav-link position-relative" href="cart.html">
             Mi carrito
-            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
+            <span id="cart-badge" class="position-absolute top-75 start-100 translate-middle badge rounded-pill bg-danger"></span>
           </a>
         </li>
         <li>
@@ -126,6 +141,13 @@ function actualizarModo(){
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  updateCartBadge();
+  
+  window.addEventListener('storage', function(e) {
+    if (e.key === 'cartItems') {
+      updateCartBadge();
+    }
+  });
   const btn = document.getElementById('logoutBtn');
   if (!btn) return; // si la página no tiene botón, no hace nada
 
