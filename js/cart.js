@@ -74,6 +74,10 @@ function deleteProduct(productId) {
 
     generateProductsItems(cartItems.productos);
     updateResume(cartItems.productos);
+
+    if (typeof updateCartBadge === 'function') {
+        updateCartBadge();
+    }
 }
 
 function updateResume(products) {
@@ -126,5 +130,9 @@ document.addEventListener("click", (e) => {
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
         updateResume(cartItems.productos);
+
+        if (typeof updateCartBadge === 'function') {
+        updateCartBadge();
+        }
     }
 });
