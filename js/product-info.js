@@ -1,8 +1,9 @@
 const productId = localStorage.getItem("product-id")
 const PRODUCT_ID = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
 const COMMENTS_ID = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
+
 let productInfo;
-let productsComments;
+let productsComments = [];
 
 document.addEventListener("DOMContentLoaded", async function (e) {
     productInfo = await apiCall(PRODUCT_ID);
@@ -18,23 +19,22 @@ document.addEventListener("DOMContentLoaded", async function (e) {
     const buyBtn = document.getElementById('buttonBuy');
     if (buyBtn) {
         buyBtn.addEventListener('click', () => {
-            const productIdStored = localStorage.getItem("product-id");
-            const id = productIdStored ? String(productIdStored) : String(productInfo?.id || Date.now());
+            const id = String(productInfo?.id || Date.now());
 
             const newProduct = {
                 id: id, 
-                imgUrl: (productInfo && productInfo.images && productInfo.images.length) ? productInfo.images[0] : '',
-                titulo: productInfo?.name || '',
-                moneda: productInfo?.currency || '',
-                precio: String(productInfo?.cost || '0'), 
+                imgUrl: productInfo.images?.[0] || "",
+                titulo: productInfo.name || "",
+                moneda: productInfo.currency || "",
+                precio: String(productInfo.cost || "0"), 
                 cantidad: 1
             };
             // Recuperar cartItems existente o crear uno nuevo
             let cartItems = { productos: [] };
             try {
-                const raw = localStorage.getItem('cartItems');
+                const raw = localStorage.getItem("cartItems");
                 cartItems = raw ? JSON.parse(raw) : { productos: [] };
-                if (!cartItems || !Array.isArray(cartItems.productos)) cartItems = { productos: [] };
+                if (!Array.isArray(cartItems.productos)) cartItems = { productos: [] };
             } catch (err) {
                 console.warn('cartItems malformado, se reinicia.', err);
                 cartItems = { productos: [] };
@@ -42,15 +42,20 @@ document.addEventListener("DOMContentLoaded", async function (e) {
             // sumar cantidad
             const existing = cartItems.productos.find(p => String(p.id) === id);
             if (existing) {
-                existing.cantidad = parseInt(existing.cantidad || 0) + newProduct.cantidad;
+                existing.cantidad = parseInt(existing.cantidad) + 1;
             } else {
                 cartItems.productos.push(newProduct);
             }
-            // Guardar y redirigir
+            // Guardar
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            window.location.href = 'cart.html';
+            //Actualizar badge
+            updateCartBadge();
+            //Alerta confirmación
+            alert("✅ Producto agregado al carrito");
         });
     }
+    //Inicializar badge
+    updateCartBadge();
 });
 
 async function apiCall(url) {
@@ -60,7 +65,7 @@ async function apiCall(url) {
 };
 
 function insertImg() {
-    const imgs = productInfo.images;
+    const imgs = productInfo.images || [];
     let htmlContentToAppend = "";
     let isActive = true;
     for (const img of imgs) {
@@ -86,6 +91,7 @@ function showProductInfo() {
 
 function showRelatedProducts() {
     const productosRelacionados = document.getElementById("productosRelacionados");
+    productosRelacionados.innerHTML = "";
 
     productInfo.relatedProducts.forEach(element => {
         let contenedorItem = document.createElement("div");
@@ -193,39 +199,6 @@ function addNewComment() {
     document.getElementById('new-comment').value = '';
     document.getElementById('barraOpciones').value = '5';
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-    const infoArea = document.getElementById("area-info");
-    const buyBtn = document.createElement("button");
-
-    buyBtn.addEventListener("click", () => {
-        const product = {
-            id: productInfo.id,
-            titulo: productInfo.name,
-            precio: productInfo.cost,
-            moneda: productInfo.currency,
-            imgUrl: productInfo.images[0],
-            cantidad: 1
-        };
-
-        let cartItems = JSON.parse(localStorage.getItem("cartItems")) || { productos: [] };
-
-        const existing = cartItems.productos.find(p => p.id === product.id);
-        if (existing) {
-            existing.cantidad++;
-        } else {
-            cartItems.productos.push(product);
-        }
-
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
-        updateCartBadge();
-
-        window.location.href = "cart.html";
-    });
-
-    updateCartBadge();
-});
 
 function updateCartBadge() {
     let cartItems = JSON.parse(localStorage.getItem("cartItems"));
