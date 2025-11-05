@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     updateResume(cartItems.productos);
 });
 
+
 function generateProductsItems(products) {
     const container = document.getElementById("products-list-container");
 
@@ -83,6 +84,7 @@ function deleteProduct(productId) {
 function updateResume(products) {
     let htmlContentToAppend = "";
     let total = 0;
+    let costoEnvio = 0;
 
     if (products.length === 0) {
         document.getElementById("cart-list-items").innerHTML = `<li class="list-group-item">Carrito vacío</li>`;
@@ -102,6 +104,9 @@ function updateResume(products) {
     });
 
     htmlContentToAppend += `<li class="list-group-item d-flex justify-content-center align-items-start bg-secondary">
+                                <div class="fw-bold"> Envío: ${costoEnvio}</div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-center align-items-start bg-secondary">
                                 <div class="fw-bold"> Total: ${total}</div>
                             </li>`;
 

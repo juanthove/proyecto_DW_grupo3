@@ -29,6 +29,10 @@
                 <div id="cart-list-items">
 
                 </div>
+                <div id="envioPago">
+                  <button type="button" class="btn btn-secondary" id="datosEnvio" data-bs-toggle="modal" data-bs-target="#modalEnvio">Datos de envío</button>
+                  <button type="button" class="btn btn-secondary" id="opcionesPago"data-bs-toggle="modal" data-bs-target="#modalPago">Opciones de pago</button>
+                </div>
               <button type="button" class="btn btn-primary" style="margin-top: 5px;">Finalizar Comprar</button>
             </ol>
           </div>
@@ -55,9 +59,153 @@
       <div></div>
     </div>
   </div>
+
+  <div class="modal" id="modalEnvio" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Datos y preferencias de envío</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Selecciona tu tarifa de envío:</p>
+          <div class="inputTarifa">
+            <input type="radio" class="btn-check" name="optionsEnvio" id="premiumOption" autocomplete="off">
+            <label class="btn btn-outline-dark" for="premiumOption">Premium 2 a 5 días (15%)</label>
+
+            <input type="radio" class="btn-check" name="optionsEnvio" id="expressOption" autocomplete="off">
+            <label class="btn btn-outline-dark" for="expressOption">Express 5 a 8 días (7%)</label>
+
+            <input type="radio" class="btn-check" name="optionsEnvio" id="standardOption" autocomplete="off">
+            <label class="btn btn-outline-dark" for="standardOption">Standard 12 a 15 días (5%)</label>
+          </div>
+
+          <hr>
+
+          <p>Dirección de envío</p>
+          <form class="formEnvio">
+            <div class="envio">
+              <input type="text" class="form-control" id="dpartamento" placeholder="Departamento">
+              <input type="text" class="form-control" id="localidad" placeholder="Localidad">
+            </div>
+            <input type="text" class="form-control" id="calle" placeholder="Calle">
+            <div class="envio">
+              <input type="text" class="form-control" id="numero" placeholder="Número">
+              <input type="text" class="form-control" id="esquina" placeholder="Esquina">
+            </div>
+            <textarea class="form-control" id="comentariosAd" placeholder="Comentarios adicionales" rows="3"></textarea>
+
+          </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="guardarEnvio" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modalPago" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Métodos de pago</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Selecciona tu forma de pago:</p>
+
+          <input type="radio" class="btn-check" name="optionsPago" id="tarjetaOption" autocomplete="off" data-bs-toggle="modal" data-bs-target="#modalTarjeta">
+          <label class="btn btn-outline-dark" for="tarjetaOption">Tarjeta de crédito o débito</label>
+
+          <input type="radio" class="btn-check" name="optionsPago" id="transferenciaOption" autocomplete="off" data-bs-toggle="modal" data-bs-target="#modalTransferencia">
+          <label class="btn btn-outline-dark" for="transferenciaOption">Transferencia Bancaria</label>
+
+          
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="guardarPago" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modalTransferencia" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Métodos de pago: Transferencia</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="datosTransferencia">
+            <p>Realiza la transferencia a la siguiente cuenta:</p>
+            <p>Banco: Santander</p>
+            <p>Tipo de cuenta: Caja de ahorro en pesos</p>
+            <p>Titular: E-commerce J.A.P</p>
+            <p>Nº de cuenta: 123456789</p>
+            <p>CBU: 012345679012345678901</p>
+          </div>
+
+          <form>
+            <div class="form-group">
+              <label for="comprobanteFile">Adjunta tu comprobante de pago aquí:</label>
+              <input type="file" class="form-control-file" id="comprobanteFile">
+            </div>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="guardarPago" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modalTarjeta" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Métodos de pago: Tarjeta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Ingresá los datos de tu tarjeta:</p>
+
+          <form class="formTarjeta">
+            <input type="text" class="form-control" id="numeroTarjeta" placeholder="Número de tarjeta">
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre y apellido del titular">
+            <div class="tarjeta">
+              <input type="text" class="form-control" id="vencimiento" placeholder="Vencimiento: MES/AÑO">
+              <input type="text" class="form-control" id="cvv" placeholder="CVV">
+            </div>
+            <div class="tarjeta">
+              <select class="form-select" id="cuotas">
+                <option selected disabled>Cuotas</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+              <label for="cuotas">(Solo crédito)</label>
+            </div>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="guardarPago" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+  <script src="js/cart.js" defer></script>
 
 </body>
 
