@@ -1484,6 +1484,28 @@ body.oscuro #profilePic {
   height: auto;
 }
 
+/*Carrito*/
+body.oscuro .btn-outline-dark{ /*Color por defecto de los botones*/
+  background-color: #f2f2f2;
+  color: #212529;
+  border-color: #212529;
+}
+
+body.oscuro .btn-outline-dark:hover { /*Color al pasar el mouse*/
+  background-color: #e0e0e0;
+  color: #212529;
+}
+
+body.oscuro .btn-check:checked + .btn-outline-dark { /*Color original al estar seleccionado*/
+  color: #fff;
+  background-color: #33363a;
+  border-color: #212529;
+}
+
+body.oscuro .btn-close{
+  filter: invert(1); /*Cambiar color X a gris claro*/
+}
+
 
 /*Imagenes cambiar modo*/
 #sol {
@@ -1577,4 +1599,75 @@ span {
   width: 100%;
   text-align: center;
   max-width: 180px;
+}
+
+
+/*Página carrito de compras*/
+#envioPago button{
+  margin-top: 1em;
+}
+
+.modal .modal-footer{ /*Boton guardar*/
+  justify-content: center;
+}
+
+/*Modal datos y preferencias de envio*/
+#modalEnvio .inputTarifa{
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+#modalEnvio .inputTarifa label{ /*Redondear botones tarifa de envío*/
+  border-radius: 20em;
+}
+
+.formEnvio{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.envio{
+  display: flex;
+  gap: 1em;
+}
+
+
+/*Modal metodos de pago*/
+#modalPago .modal-body{
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}
+
+#modalPago .modal-body label{ /*Redondear botones metodo de pago*/
+  border-radius: 20em;
+}
+
+
+/*Modal transferencia*/
+.datosTransferencia{
+  border: solid 0.15em;
+}
+
+.datosTransferencia p{
+  margin-left: 0.2em;
+}
+
+/*Modal tarjeta*/
+.formTarjeta{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.tarjeta{
+  display: flex;
+  gap: 1em;
+}
+
+.tarjeta label{ /*Para que el texto solo credito quede en 1 solo renglon*/
+  display:inline;
+  white-space: nowrap;
 }
