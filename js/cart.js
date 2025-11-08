@@ -170,3 +170,5 @@ document.addEventListener("click", (e) => {
 });
 
 let envioRate = 0;
+
+//
