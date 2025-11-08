@@ -1,7 +1,24 @@
 document.addEventListener("DOMContentLoaded", function (e) {
+    envioRate = parseFloat(localStorage.getItem("envioRate")) || 0;
     const cartItems = JSON.parse(localStorage.getItem("cartItems"));
     generateProductsItems(cartItems.productos);
     updateResume(cartItems.productos);
+
+    const envioOpciones = document.getElementsByName("optionsEnvio");
+    if (envioRate === 0.15) document.getElementById("premiumOption").checked = true;
+    else if (envioRate === 0.07) document.getElementById("expressOption").checked = true;
+    else if (envioRate === 0.05) document.getElementById("standardOption").checked = true;
+    envioOpciones.forEach(opt => {
+    opt.addEventListener("change", () => {
+      if (opt.id === "premiumOption") envioRate = 0.15;
+      else if (opt.id === "expressOption") envioRate = 0.07;
+      else if (opt.id === "standardOption") envioRate = 0.05;
+
+      localStorage.setItem("envioRate", envioRate);
+      const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+      updateResume(cartItems.productos); 
+    });
+  });
 });
 
 
@@ -83,32 +100,42 @@ function deleteProduct(productId) {
 
 function updateResume(products) {
     let htmlContentToAppend = "";
-    let total = 0;
-    let costoEnvio = 0;
+    let subtotal = 0;
 
-    if (products.length === 0) {
+    if (!products || products.length === 0) {
         document.getElementById("cart-list-items").innerHTML = `<li class="list-group-item">Carrito vacío</li>`;
         return;
     }
 
     products.forEach(product => {
         const subTotal = parseInt(product.precio) * parseInt(product.cantidad);
-        total += subTotal;
-        htmlContentToAppend += `<li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
+        subtotal += subTotal;
+        htmlContentToAppend += `
+            <li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
                 <div class="ms-2 me-auto">
-                  <div class="fw-bold">${product.titulo}</div>
-                  Subtotal: ${subTotal}
+                    <div class="fw-bold">${product.titulo}</div>
+                    Subtotal: ${product.moneda} ${subTotal}
                 </div>
                 <span class="badge bg-primary rounded-pill">${parseInt(product.cantidad)}</span>
-              </li>`;
+            </li>`;
     });
 
-    htmlContentToAppend += `<li class="list-group-item d-flex justify-content-center align-items-start bg-secondary">
-                                <div class="fw-bold"> Envío: ${costoEnvio}</div>
-                            </li>
-                            <li class="list-group-item d-flex justify-content-center align-items-start bg-secondary">
-                                <div class="fw-bold"> Total: ${total}</div>
-                            </li>`;
+    const costoEnvio = Math.round(subtotal * envioRate);
+    const total = subtotal + costoEnvio;
+
+    htmlContentToAppend += `
+        <li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
+            <div class="fw-bold">Subtotal:</div>
+            <div>${subtotal}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
+            <div class="fw-bold">Costo de envío (${envioRate * 100 || 0}%):</div>
+            <div>${costoEnvio}</div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
+            <div class="fw-bold">Total:</div>
+            <div>${total}</div>
+        </li>`;
 
     document.getElementById("cart-list-items").innerHTML = htmlContentToAppend;
 }
@@ -141,3 +168,7 @@ document.addEventListener("click", (e) => {
         }
     }
 });
+
+let envioRate = 0;
+
+//
