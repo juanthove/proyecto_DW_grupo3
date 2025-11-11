@@ -129,7 +129,7 @@ function updateResume(products) {
             <div>${subtotal}</div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
-            <div class="fw-bold">Costo de envío (${envioRate * 100 || 0}%):</div>
+            <div class="fw-bold">Costo de envío (${(envioRate * 100).toFixed(2) || 0}%):</div>
             <div>${costoEnvio}</div>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
@@ -171,4 +171,3 @@ document.addEventListener("click", (e) => {
 
 let envioRate = 0;
 
-//
