@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
       updateResume(cartItems.productos); 
     });
   });
+
+  //Finalizar compra
+  const btnFinalizar = document.getElementById("btnFinalizarCompra");
+  btnFinalizar.addEventListener("click", finalizarCompra);
 });
 
 
@@ -172,3 +176,60 @@ document.addEventListener("click", (e) => {
 
 let envioRate = 0;
 
+function finalizarCompra() {
+    let errores = [];
+
+    //Validar dirección
+    const departamento = document.getElementById("departamento").value.trim();
+    const localidad = document.getElementById("localidad").value.trim();
+    const calle = document.getElementById("calle").value.trim();
+    const numero = document.getElementById("numero").value.trim();
+    const esquina = document.getElementById("esquina").value.trim();
+
+    if (!departamento || !localidad || !calle || !numero || !esquina) {
+        errores.push("Completa todos los campos de la dirección de envío.");
+    }
+
+    //Validar envío
+    const envioSeleccionado = document.querySelector("input[name='optionsEnvio']:checked");
+    if (!envioSeleccionado) {
+        errores.push("Seleccione una forma de envío.");
+    }
+
+    //Validar cantidades
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || {productos: []};
+    const cantidadesInvalidas = cartItems.productos.some(p => !p.cantidad || p.cantidad <= 0);
+    if (cantidadesInvalidas || cartItems.productos.length === 0) {
+        errores.push("Cada producto debe tener una cantidad mayor a 0.");
+    }
+
+    //Validar forma de pago
+    const pagoSeleccionado = document.querySelector("input[name='optionsPago']:checked");
+    if (!pagoSeleccionado) {
+        errores.push("Selecciona una forma de pago.");
+    } else {
+        if (pagoSeleccionado.id === "tarjetaOption") {
+            const numeroTarjeta = document.getElementById("numeroTarjeta").value.trim();
+            const nombre = document.getElementById("nombre").value.trim();
+            const vencimiento = document.getElementById("vencimiento").value.trim();
+            const cvv = document.getElementById("cvv").value.trim();
+            const cuotas = document.getElementById("cuotas").value;
+
+            if (!numeroTarjeta || !nombre || !vencimiento || !cvv || cuotas === "Cuotas") {
+                errores.push("Completa todos los datos de la tarjeta.")
+            }
+        } else if (pagoSeleccionado.id === "transferenciaOption") {
+            const comprobante = document.getElementById("comprobanteFile");
+            if (!comprobante || comprobante.files.length === 0) {
+                errores.push("Debes adjuntar el comprobante de transferencia.");
+            }
+        }
+    }
+
+    //Mostrar resultado
+    if (errores.length > 0) {
+        alert("❌ No se puede finalizar la compra:\n\n" + errores.join("\n"));
+    } else {
+        alert("✅ ¡Compra exitosa! Gracias por tu compra.");
+    }
+}
