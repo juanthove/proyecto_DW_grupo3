@@ -226,10 +226,34 @@ function finalizarCompra() {
         }
     }
 
-    //Mostrar resultado
+    //Mostrar alerta
+    const resumeContainer = document.querySelector(".cart-resume");
+    const oldAlert = document.querySelector(".custom-alert");
+    if (oldAlert) oldAlert.remove();    //Si existe, eliminamos la alerta anterior
+
+    const alertDiv = document.createElement("div");
+    alertDiv.classList.add("custom-alert", "alert", "mt-3", "text-start");
     if (errores.length > 0) {
-        alert("❌ No se puede finalizar la compra:\n\n" + errores.join("\n"));
+        alertDiv.classList.add("alert-danger");
+        alertDiv.innerHTML = `
+            <strong>❌ No se puede finalizar la compra:</strong>
+            <ul class="mt-2 mb-0">
+                ${errores.map(err => `<li>${err}</li>`).join("")}
+            </ul>
+        `;
     } else {
-        alert("✅ ¡Compra exitosa! Gracias por tu compra.");
+        alertDiv.classList.add("alert-success");
+        alertDiv.innerHTML = `<strong>✅ ¡Compra exitosa!</strong> Gracias por tu compra.`;
+
+        //Vaciamos el carrito luego de una compra exitosa
+        localStorage.removeItem("cartItems");
+        generateProductsItems([]);
+        updateResume([]);
+        if (typeof updateCartBadge === 'function') updateCartBadge();
     }
+    
+    resumeContainer.appendChild(alertDiv);
+
+    //Quitamos la alerta luego de 2 segundos
+    setTimeout(() => alertDiv.remove(), 2000);
 }
