@@ -1655,6 +1655,13 @@ span {
   margin-left: 0.2em;
 }
 
+#comprobanteFile{
+  display: block;
+  width: 100%;
+  white-space: normal;
+  color: white;
+}
+
 /*Modal tarjeta*/
 .formTarjeta{
   display: flex;
@@ -1670,4 +1677,9 @@ span {
 .tarjeta label{ /*Para que el texto solo credito quede en 1 solo renglon*/
   display:inline;
   white-space: nowrap;
+}
+
+/*Alerta del carrito*/
+.custom-alert{
+  z-index: 9999;
 }
