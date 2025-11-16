@@ -1,3 +1,5 @@
+const selectedCurrency = localStorage.getItem("currency") || "USD";
+
 document.addEventListener("DOMContentLoaded", function (e) {
     envioRate = parseFloat(localStorage.getItem("envioRate")) || 0;
     const cartItems = JSON.parse(localStorage.getItem("cartItems"));
@@ -9,20 +11,20 @@ document.addEventListener("DOMContentLoaded", function (e) {
     else if (envioRate === 0.07) document.getElementById("expressOption").checked = true;
     else if (envioRate === 0.05) document.getElementById("standardOption").checked = true;
     envioOpciones.forEach(opt => {
-    opt.addEventListener("change", () => {
-      if (opt.id === "premiumOption") envioRate = 0.15;
-      else if (opt.id === "expressOption") envioRate = 0.07;
-      else if (opt.id === "standardOption") envioRate = 0.05;
+        opt.addEventListener("change", () => {
+            if (opt.id === "premiumOption") envioRate = 0.15;
+            else if (opt.id === "expressOption") envioRate = 0.07;
+            else if (opt.id === "standardOption") envioRate = 0.05;
 
-      localStorage.setItem("envioRate", envioRate);
-      const cartItems = JSON.parse(localStorage.getItem("cartItems"));
-      updateResume(cartItems.productos); 
+            localStorage.setItem("envioRate", envioRate);
+            const cartItems = JSON.parse(localStorage.getItem("cartItems"));
+            updateResume(cartItems.productos);
+        });
     });
-  });
 
-  //Finalizar compra
-  const btnFinalizar = document.getElementById("btnFinalizarCompra");
-  btnFinalizar.addEventListener("click", finalizarCompra);
+    //Finalizar compra
+    const btnFinalizar = document.getElementById("btnFinalizarCompra");
+    btnFinalizar.addEventListener("click", finalizarCompra);
 });
 
 
@@ -32,6 +34,7 @@ function generateProductsItems(products) {
     if (products && products.length > 0) {
         let htmlContentToAppend = "";
         for (let product of products) {
+            const converted = convertPrice(product.precio, product.moneda, selectedCurrency);
             htmlContentToAppend += `
             <div class="list-group-item-cart" data-id="${product.id}">
     <div class="row align-items-stretch">
@@ -45,7 +48,10 @@ function generateProductsItems(products) {
             <div class="d-flex flex-column mt-1 mb-2">
                 <div class="row align-items-center">
                     <div class="col-6">
-                        <p class="mb-1 mt-4 pt-2 fs-5"><b>${product.moneda} ${product.precio}</b></p>
+                        
+                        <p class="mb-1 mt-4 pt-2 fs-5">
+                            <b>${selectedCurrency} ${Math.round(converted)}</b>
+                        </p>
                     </div>
                     <div class="col-6 col-sm-5">
                         <div class="mb-1">
@@ -112,13 +118,14 @@ function updateResume(products) {
     }
 
     products.forEach(product => {
-        const subTotal = parseInt(product.precio) * parseInt(product.cantidad);
+       const precioConvertido = convertPrice(product.precio, product.moneda, selectedCurrency);
+const subTotal = Math.round(precioConvertido * parseInt(product.cantidad));
         subtotal += subTotal;
         htmlContentToAppend += `
             <li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
                 <div class="ms-2 me-auto">
                     <div class="fw-bold">${product.titulo}</div>
-                    Subtotal: ${product.moneda} ${subTotal}
+                    Subtotal: ${selectedCurrency} ${subTotal}
                 </div>
                 <span class="badge bg-primary rounded-pill">${parseInt(product.cantidad)}</span>
             </li>`;
@@ -169,7 +176,7 @@ document.addEventListener("click", (e) => {
         updateResume(cartItems.productos);
 
         if (typeof updateCartBadge === 'function') {
-        updateCartBadge();
+            updateCartBadge();
         }
     }
 });
@@ -197,7 +204,7 @@ function finalizarCompra() {
     }
 
     //Validar cantidades
-    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || {productos: []};
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || { productos: [] };
     const cantidadesInvalidas = cartItems.productos.some(p => !p.cantidad || p.cantidad <= 0);
     if (cantidadesInvalidas || cartItems.productos.length === 0) {
         errores.push("Cada producto debe tener una cantidad mayor a 0.");
@@ -251,7 +258,7 @@ function finalizarCompra() {
         updateResume([]);
         if (typeof updateCartBadge === 'function') updateCartBadge();
     }
-    
+
     resumeContainer.appendChild(alertDiv);
 
     //Quitamos la alerta luego de 2 segundos

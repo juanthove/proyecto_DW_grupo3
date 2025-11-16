@@ -6,6 +6,9 @@ function showProductsList(array) {
     let htmlContentToAppend = "";
     for (let i = 0; i < array.length; i++) {
         let product = array[i];
+        // Convertir el precio según la moneda seleccionada
+        const selectedCurrency = localStorage.getItem("currency") || "USD";
+        const converted = convertPrice(product.cost, product.currency, selectedCurrency);
 
         htmlContentToAppend += `
         <div class="list-group-item" id="${product.id}" onclick="makeSelection(${product.id})">
@@ -18,7 +21,7 @@ function showProductsList(array) {
                         <h4 class="mb-1">${product.name}</h4>
                         </div>
                     <div class="d-flex justify-content-between mt-1 mb-2" >
-                        <p class="mb-1"><b>${product.currency} ${product.cost}</b></p>
+                        <p class="mb-1"><b>${selectedCurrency} ${converted.toFixed(2)}</b></p>
                         <small>${product.soldCount} vendidos</small> 
                     </div>
                     <p class="mb-1 description">${product.description}</p>
@@ -34,7 +37,7 @@ function showProductsList(array) {
 function makeSelection(id) {
     localStorage.setItem("product-id", id);
     window.location.href = "product-info.html";
-    
+
 };
 
 document.getElementById("filterButton").addEventListener("click", () => {
@@ -75,9 +78,9 @@ document.querySelectorAll(".sort-buttons button")[2].addEventListener("click", (
     showProductsList(filteredProductsArray);
 });
 
-document.addEventListener("DOMContentLoaded", function(e){
-    getJSONData(`${PRODUCTS_URL}${localStorage.getItem("catID")}${EXT_TYPE}`).then(function(resultObj){   
-        if (resultObj.status === "ok"){
+document.addEventListener("DOMContentLoaded", function (e) {
+    getJSONData(`${PRODUCTS_URL}${localStorage.getItem("catID")}${EXT_TYPE}`).then(function (resultObj) {
+        if (resultObj.status === "ok") {
             document.getElementById("textProduct").innerHTML = `Verás aqui todos los productos de la categoria ${resultObj.data.catName}`;
             currentProductsArray = resultObj.data.products;
             filteredProductsArray = [...currentProductsArray];
