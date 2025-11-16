@@ -1683,3 +1683,83 @@ span {
 .custom-alert{
   z-index: 9999;
 }
+
+/*Iconos de moneda*/
+.currencyIcon {
+  width: 1.5vw;
+  height: 0.80vw;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: 0.2s;
+  margin-left: 0.2vw;
+}
+
+.currencyIcon.active {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+
+/*navbar fixes*/
+
+.cart-badge {
+  top: 0;
+  margin-left: 0.1vw;
+  padding: 3px 6px;
+  font-size: 0.75rem;
+}
+
+#logoNav a img {
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+}
+
+.navbar-toggler {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 4px !important; 
+}
+
+@media (max-width: 992px) {  
+  .navbar-nav {
+    margin-left: 5vw;
+    margin-bottom: 5vh;
+    flex-direction: column !important;  
+    align-items: flex-start !important; 
+    gap: 1rem; 
+  }
+
+  .navbar-nav > div {
+    flex-direction: column !important;
+    width: 100%;
+    align-items: flex-start !important;
+    gap: 1rem;
+  }
+
+  .navbar-nav .d-flex {
+    width: 100%;
+  }
+
+  #logoNav {
+    display: none;
+  }
+
+  .currencyIcon {
+
+  width: 6vw;
+  height: 3vw;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: 0.2s;
+  margin-left: 0.2vw;
+}
+
+.currencyIcon.active {
+  opacity: 1;
+  transform: scale(1.1);
+}
+}
+

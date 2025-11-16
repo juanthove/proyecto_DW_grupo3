@@ -81,8 +81,10 @@ function insertImg() {
 };
 
 function showProductInfo() {
+    const selectedCurrency = localStorage.getItem("currency") || "USD";
+const converted = convertPrice(productInfo.cost, productInfo.currency, selectedCurrency);
     document.getElementById("product-name").textContent = productInfo.name;
-    document.getElementById("product-price").textContent = `${productInfo.currency} ${productInfo.cost}`;
+   document.getElementById("product-price").textContent = `${selectedCurrency} ${converted.toFixed(2)}`;
     document.getElementById("product-sold-count").textContent = `Vendidos: ${productInfo.soldCount}`;
     document.getElementById("product-description").textContent = productInfo.description;
     document.getElementById("product-category").textContent = productInfo.category;
