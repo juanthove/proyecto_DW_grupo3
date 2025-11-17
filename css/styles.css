@@ -580,23 +580,16 @@ button#btnLogin:hover {
 
 .info-bg {
   background-color: #343434;
-  padding: 0.5rem;
-}
-
-
-
-#product-name {
-  padding: 1rem;
 }
 
 #product-description {
   background-color: #343434;
-  padding: 1rem;
+  
 }
 
 #product-category {
   border-color: #343434;
-  margin-bottom: 1rem;
+  
 }
 
 @media(max-width: 575px) {
@@ -729,8 +722,6 @@ button#btnLogin:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 5rem;
-    gap: 2rem;
 
 
 
@@ -863,7 +854,7 @@ button#btnLogin:hover {
 #productosRelacionados .list-group-item {
   text-align: center;
   margin: 10px;
-  width: 80%;
+  width: 96%;
   height: auto;
   margin: 0 auto;
   background-color: #2c2c2c;
@@ -906,13 +897,6 @@ button#btnLogin:hover {
   align-items: start;
 }
 
-.controls {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: stretch;
-}
-
 .label-block,
 .small-box,
 .info-box {
@@ -924,25 +908,22 @@ button#btnLogin:hover {
 }
 
 .btn-send {
-  background: #1372ff;
+  background: #354968;
   color: #fff;
-  border: 3px solid #191919;
-  padding: 10px 12px;
-  font-weight: 700;
+  border: 0.1rem solid #475974;;
   cursor: pointer;
-  width: 100%;
   text-align: center;
+  border-radius: 0.1rem;
 }
 
 .comment-area {
   flex-direction: column;
-  gap: 12px;
-  max-height: 100px;
+  max-height: fit-content;
 }
 
 #new-comment {
   background: #dcdcdc;
-  border: 3px solid #191919;
+  border: 0.1rem solid #191919;
   padding: 18px;
   font-size: 18px;
   min-height: 64px;
@@ -952,14 +933,6 @@ button#btnLogin:hover {
   outline: none;
   width: 100%;
   box-sizing: border-box;
-}
-
-.comments-container {
-  display: grid;
-  grid-template-columns: 1fr 100px;
-  gap: 12px;
-  margin-bottom: 10px;
-
 }
 
 .comments-container>.info-box#comment-description {
@@ -985,13 +958,10 @@ button#btnLogin:hover {
 }
 
 .titulo {
-  background-color: #dcdcdc;
-  border: 3px solid #191919;
-  color: #111;
-  max-width: 60%;
-  padding: 0.4rem 0.8rem;
-  margin: 0 auto 1rem auto;
-  text-align: center;
+  border-bottom: 0.1rem solid #dcdcdc;
+  color: #dcdcdc;
+  padding: 0.4rem 0.1rem;
+  margin-bottom: 0.4rem;
 
 }
 
@@ -1008,34 +978,6 @@ button#btnLogin:hover {
   background: #dcdcdc;
   border: 2px solid #191919;
   width: 138px;
-}
-
-.page-grid {
-  width: 100%;
-  max-width: 1200px;
-  margin: 2rem auto;
-  box-sizing: border-box;
-  padding: 0 1rem;
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "images"
-    "info"
-    "comments"
-    "related";
-}
-
-#area-images {
-  grid-area: images;
-}
-
-#area-info {
-  grid-area: info;
-}
-
-#area-comments {
-  grid-area: comments;
 }
 
 #area-related {
@@ -1055,15 +997,6 @@ button#btnLogin:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-#area-images .carousel .carousel-item img {
-  width: 90%;
-  height: auto;
-  max-height: 400px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
 }
 
 .info-wrapper {
@@ -1113,6 +1046,7 @@ button#btnLogin:hover {
 
 .comments-panel,
 .related-panel {
+  display: flex;
   background: #2c2c2c;
   padding: 0.6rem;
   border-radius: 6px;
@@ -1136,9 +1070,9 @@ button#btnLogin:hover {
 
 .controls {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   gap: 12px;
-  align-items: stretch;
 }
 
 .comment-area {
@@ -1763,3 +1697,36 @@ span {
 }
 }
 
+/* Product-info page fixes */
+.panel {
+  background: #2b2b2b;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Para que el carrusel no se deforme */
+#area-images img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* categorias page fixes */
+#cat-list-container {
+display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+
+.list-group-item.info-bg:hover {
+  background-color: #ffffff !important; /* fondo blanco */
+  color: #000000 !important;           /* texto negro */
+}
+
+.list-group-item.info-bg:hover h4,
+.list-group-item.info-bg:hover p,
+.list-group-item.info-bg:hover small {
+  color: #000000 !important;
+}

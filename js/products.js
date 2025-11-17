@@ -11,8 +11,8 @@ function showProductsList(array) {
         const converted = convertPrice(product.cost, product.currency, selectedCurrency);
 
         htmlContentToAppend += `
-        <div class="list-group-item" id="${product.id}" onclick="makeSelection(${product.id})">
-            <div class="row">
+        <div class="col-12 list-group-item" id="${product.id}" onclick="makeSelection(${product.id})">
+            <div>
                 <div>
                     <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
                 </div>

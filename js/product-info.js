@@ -71,7 +71,7 @@ function insertImg() {
 
         htmlContentToAppend += `
             <div class="carousel-item ${isActive ? "active" : ""}">
-      <img class="img-thumbnail" src=${img} alt="img">
+      <img class="d-block w-100 img-fluid" src="${img}" alt="img">
     </div>
             `
         isActive = false;
