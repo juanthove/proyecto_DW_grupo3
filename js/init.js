@@ -165,7 +165,7 @@ function actualizarModo() {
 //logica de conversion de divisas USD a UYU y viceversa
 
 async function getExchangeRates() {
-  const url = "https://api.currencyfreaks.com/v2.0/rates/latest?apikey=52940184420848b9800edb9ed416a89d&symbols=UYU,USD&base=USD";
+  const url = "https://api.currencyfreaks.com/v2.0/rates/latest?apikey=b0c26dcf820542348a28b7b23d288065&symbols=UYU,USD&base=USD";
   const response = await getJSONData(url);
 
   if (response.status === "ok" && response.data && response.data.rates) {
@@ -176,7 +176,7 @@ async function getExchangeRates() {
   }
 }
 
-// Inicializar las tasas de cambio al cargar la página
+// Inicializar las tasas de cambio 
 
 async function initExchangeRates() {
   const rates = await getExchangeRates();
@@ -205,7 +205,7 @@ function convertPrice(amount, fromCurrency, toCurrency) {
   return amount; // Si las monedas no son reconocidas, devuelve el monto original
 }
 
-function currencyIconsHandler(event) {
+function currencyIconsHandler() {
 const uyFlag = document.getElementById("uyu");
 const usFlag = document.getElementById("usd");
 let selectedCurrency = localStorage.getItem("currency") || "USD";

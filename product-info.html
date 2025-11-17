@@ -1,95 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>eMercado - Todo lo que busques está aquí</title>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    
-    <script src="js/auto-login.js"></script>
-  </head>
-  
-  <body>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>eMercado - Todo lo que busques está aquí</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <script src="js/auto-login.js"></script>
+</head>
+
+<body>
   <div id="navBarDiv"></div>
 
+
   <main>
-    
-    <div class="page-grid">
+    <div class="container my-4">
 
-      <section id="area-images" class="panel">
-        <div id="carousel">
-          <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
-            <div class="carousel-inner" id="carousel-img-insert"></div>
-            
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
+      <!-- ARRIBA -->
+      <div class="row justify-content-center">
+
+        <!-- CARRUSEL (3/4) -->
+        <div class="col-lg-7 d-flex">
+          <section id="area-images" class="panel">
+            <div id="carousel">
+              <div id="carouselExampleControls" class="carousel" data-bs-ride="carousel">
+                <div class="carousel-inner" id="carousel-img-insert"></div>
+
+                <button class="carousel-control-prev size" type="button" data-bs-target="#carouselExampleControls"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon me-5"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon ms-5"></span>
+                </button>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
 
-      <aside id="area-info" class="panel">
-        <div class="info-wrapper">
-          <div id="product-category" class="info-bg small-label"></div>
-          <div id="product-name" class="info-bg product-name"></div>
+        <!-- INFO PRODUCTO (1/4) -->
+        <div class="col-lg-4 d-flex">
+          <aside id="area-info" class="panel">
+            <div class="info-wrapper">
+              <div id="product-category" class="info-bg small-label"></div>
+              <div id="product-name" class="info-bg product-name"></div>
 
-          <div id="price-count" class="price-row">
-            <div id="product-price" class="info-bg price-box"></div>
-            <div id="product-sold-count" class="info-bg price-box"></div>
-          </div>
-
-          <div id="product-description" class="description-box"></div>
-          <div><button id="buttonBuy" type="button">Comprar</button></div>
-        </div>
-      </aside>
-
-      <section id="area-comments" class="panel">
-        <div class="comments-panel">
-          <div class="titulo">Comentarios</div>
-
-          <div class="comments-body">
-            <aside class="controls">
-              <div class="label-block">
-                <label>Calificar:
-                  <select id="barraOpciones">
-                    <option value="5">5 - Excelente</option>
-                    <option value="4">4 - Muy bueno</option>
-                    <option value="3">3 - Bueno</option>
-                    <option value="2">2 - Regular</option>
-                    <option value="1">1 - Malo</option>
-                  </select>
-                </label>
+              <div id="price-count" class="price-row">
+                <div id="product-price" class="info-bg price-box"></div>
+                <div id="product-sold-count" class="info-bg price-box"></div>
               </div>
 
-              <button class="btn-send" id="btn-send-comment" type="button">Enviar</button>
-            </aside>
-
-            <main class="comment-area">
-              <textarea id="new-comment" placeholder="Ingrese su comentario..." rows="4" aria-label="Ingrese su comentario"></textarea>
-
-              <div class="comment-list" aria-live="polite"> </div>
-            </main>
-          </div>
-
+              <div id="product-description" class="description-box"></div>
+              <button id="buttonBuy" type="button" class="mx-auto d-block">Comprar</button>
+            </div>
+          </aside>
         </div>
-      </section>
 
-      <aside id="area-related" class="panel">
-        <div class="related-panel">
-          <div class="titulo">Productos relacionados</div>
-          <div id="productosRelacionados" class="related-list d-flex flex-column gap-3">
+      </div>
 
-          </div>
+      <!-- ABAJO -->
+      <div class="row g-4 my-4">
+
+        <!-- COMENTARIOS 4/5 -->
+        <div class="col-lg-8 d-flex">
+          <section id="area-comments" class="panel d-flex flex-column h-100">
+            <div class="comments-panel d-flex flex-column h-100">
+              
+              <div class="comments-body d-flex gap-3 flex-grow-1">
+                <section class="comment-area d-flex h-50">
+                  <div class="titulo fs-4">Usuarios que compraron este producto dicen:</div>
+                  <div class="comment-list"></div>
+                </section>
+                <section class="controls order-2 d-flex align-items-center">
+                  <label>Calificar:
+                    <select id="barraOpciones">
+                      <option value="5">5 - Excelente</option>
+                      <option value="4">4 - Muy bueno</option>
+                      <option value="3">3 - Bueno</option>
+                      <option value="2">2 - Regular</option>
+                      <option value="1">1 - Malo</option>
+                    </select>
+                  </label>
+                  <textarea id="new-comment" placeholder="Ingrese su comentario..." rows="4"></textarea>
+                   <div class="d-flex justify-content-end mt-2">
+                  <button class="btn-send" id="btn-send-comment" type="button">Enviar</button>
+                </div>
+              
+                </section>
+               
+
+            </div>
+          </section>
         </div>
-      </aside>
+
+        <!-- RELACIONADOS 1/5 -->
+        <div class="col-lg-4">
+          <aside id="area-related" class="panel d-flex flex-column h-100">
+            <div class="related-panel d-flex flex-column h-100">
+              <div class="titulo text-center fs-4">Productos relacionados</div>
+              <div id="productosRelacionados" class="related-list d-flex flex-column gap-1"></div>
+            </div>
+          </aside>
+        </div>
+
+      </div>
 
     </div>
   </main>
@@ -99,7 +119,8 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a></p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a>
+      </p>
     </div>
   </footer>
 
