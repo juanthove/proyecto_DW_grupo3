@@ -169,7 +169,7 @@ async function getExchangeRates() {
   const response = await getJSONData(url);
 
   if (response.status === "ok" && response.data && response.data.rates) {
-    return response.data.rates;
+    return {date: response.data.date, rates: response.data.rates};
   } else {
     console.error("Error al obtener las tasas de cambio:", response.data);
     return null;
@@ -179,14 +179,20 @@ async function getExchangeRates() {
 // Inicializar las tasas de cambio 
 
 async function initExchangeRates() {
-  const rates = await getExchangeRates();
-  if (rates) {
-    localStorage.setItem("exchangeRates", JSON.stringify(rates));
+  const today = new Date();
+  const savedRates = JSON.parse(localStorage.getItem("exchangeRates"));
+  let rates;
+  if (!savedRates || savedRates?.date < today  ) {
+    rates = await getExchangeRates();
+  } else {
+    rates = savedRates;
   }
+  
+  localStorage.setItem("exchangeRates", JSON.stringify(rates));
 }
 
 function convertPrice(amount, fromCurrency, toCurrency) {
-  const rates = JSON.parse(localStorage.getItem("exchangeRates"));
+  const {rates} = JSON.parse(localStorage.getItem("exchangeRates"));
   if (!rates) {
     return amount; // Si no hay tasas de cambio, devuelve el monto original
   }
@@ -196,6 +202,7 @@ function convertPrice(amount, fromCurrency, toCurrency) {
   }
 
   if (fromCurrency === "USD" && toCurrency === "UYU") {
+    console.log(rates.UYU);
     return amount * rates.UYU;
   }
 
