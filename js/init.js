@@ -1,11 +1,6 @@
-const CATEGORIES_URL = "https://japceibal.github.io/emercado-api/cats/cat.json";
+const CATEGORIES_URL = "http://localhost:3000/products/cats/getAll";
 const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publish.json";
-const PRODUCTS_URL = "https://japceibal.github.io/emercado-api/cats_products/";
-const PRODUCT_INFO_URL = "https://japceibal.github.io/emercado-api/products/";
-const PRODUCT_INFO_COMMENTS_URL = "https://japceibal.github.io/emercado-api/products_comments/";
-const CART_INFO_URL = "https://japceibal.github.io/emercado-api/user_cart/";
-const CART_BUY_URL = "https://japceibal.github.io/emercado-api/cart/buy.json";
-const EXT_TYPE = ".json";
+const PRODUCTS_URL = "http://localhost:3000/products/cats_products/";
 let navBar = document.getElementById("navBarDiv");
 const userObj = localStorage.getItem('myAppSession');
 const parsedUser = JSON.parse(userObj);
@@ -31,7 +26,8 @@ let getJSONData = function (url) {
   showSpinner();
   return fetch(url)
     .then(response => {
-      if (response.ok) {
+  
+      if (response) {
         return response.json();
       } else {
         throw Error(response.statusText);
@@ -168,7 +164,7 @@ async function getExchangeRates() {
   const url = "https://api.currencyfreaks.com/v2.0/rates/latest?apikey=b0c26dcf820542348a28b7b23d288065&symbols=UYU,USD&base=USD";
   const response = await getJSONData(url);
 
-  if (response.status === "ok" && response.data && response.data.rates) {
+  if (response?.data?.rates) {
     return {date: response.data.date, rates: response.data.rates};
   } else {
     console.error("Error al obtener las tasas de cambio:", response.data);
@@ -202,7 +198,6 @@ function convertPrice(amount, fromCurrency, toCurrency) {
   }
 
   if (fromCurrency === "USD" && toCurrency === "UYU") {
-    console.log(rates.UYU);
     return amount * rates.UYU;
   }
 
