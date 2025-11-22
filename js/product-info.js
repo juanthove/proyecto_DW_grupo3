@@ -1,6 +1,6 @@
 const productId = localStorage.getItem("product-id")
-const PRODUCT_ID = `https://japceibal.github.io/emercado-api/products/${productId}.json`;
-const COMMENTS_ID = `https://japceibal.github.io/emercado-api/products_comments/${productId}.json`;
+const PRODUCT_ID = `http://localhost:3000/products/${productId}`;
+const COMMENTS_ID = `http://localhost:3000/products/products_comments/${productId}`;
 let productInfo;
 let productsComments;
 
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
 
 async function apiCall(url) {
     const response = await getJSONData(url);
-    return response.status === "ok" ? response.data : []
+    return response ? response.data : []
 
 };
 
