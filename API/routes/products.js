@@ -1,31 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const categories = require('../JSON/cats/cat.json');
 
+//Importo el controlador de producto
+const productsController = require("../controllers/productsController");
 
-router.get("/:id", (req, res) => {
-    const id = req.params.id; 
-    const product = require(`../JSON/products/${id}.json`);
-    res.send(product)
-});
+router.get("/:id", productsController.getProductsById);
 
-router.get("/cats/getAll", (req, res) => {
-    res.send(categories);
-});
+router.get("/cats/getAll", productsController.getCategories);
 
-router.get("/cats_products/:id", (req, res) => {
-    const id = req.params.id;
-    const products = require(`../JSON/cats_products/${id}.json`);
+router.get("/cats_products/:id", productsController.getProductsByCategory);
 
-    res.send(products);
-});
-
-router.get("/products_comments/:id", (req, res) => {
-    const id = req.params.id;
-    const products_comments = require(`../JSON/products_comments/${id}.json`);
-
-    res.send(products_comments);
-});
+router.get("/products_comments/:id", productsController.getComentsByProduct);
 
 
 
