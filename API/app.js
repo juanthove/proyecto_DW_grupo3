@@ -12,6 +12,7 @@ app.use(cors({origin:'*'}))
 app.use('/products', require('./routes/products'));
 app.use('/cart', require('./routes/cart'));
 app.use('/users', require('./routes/users'));
+app.use('/auth', require('./routes/auth'));
 
 app.listen(3000, () => {
     console.log("server running on port 3000")
