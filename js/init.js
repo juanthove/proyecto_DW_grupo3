@@ -193,7 +193,8 @@ async function initExchangeRates() {
 }
 
 function convertPrice(amount, fromCurrency, toCurrency) {
-  const { rates } = JSON.parse(localStorage.getItem("exchangeRates"));
+
+  const rates = JSON.parse(localStorage.getItem("exchangeRates"));
   if (!rates) {
     return amount; // Si no hay tasas de cambio, devuelve el monto original
   }
