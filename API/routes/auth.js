@@ -7,12 +7,12 @@ const users = [
   {
     id: 1,
     email: "usuario@ejemplo.com",
-    password: "$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi" // password
+    password: "$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi" // Contraseña: password
   },
   {
     id: 2,
     email: "admin@ecommerce.com", 
-    password: "$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi" // password
+    password: "$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi" // Contraseña: password
   }
 ];
 
@@ -31,14 +31,13 @@ router.post('/login', async (req, res) => {
     }
 
     const user = users.find(u => u.email === email);
-    
     if (!user) {
       return res.status(401).json({
         success: false,
         message: 'Credenciales inválidas'
       });
     }
-
+    
     const validPassword = await bcrypt.compare(password, user.password);
     
     if (!validPassword) {
