@@ -1,4 +1,5 @@
 const selectedCurrency = localStorage.getItem("currency") || "USD";
+const urlCart = "http://localhost:3000/cart";
 
 document.addEventListener("DOMContentLoaded", function (e) {
     envioRate = parseFloat(localStorage.getItem("envioRate")) || 0;
@@ -113,7 +114,7 @@ function updateResume(products) {
     let subtotal = 0;
 
     if (!products || products.length === 0) {
-        document.getElementById("cart-list-items").innerHTML = `<li class="list-group-item">Carrito vacío</li>`;
+        document.getElementById("cart-list-items").innerHTML = `<li class="list-group-item" id="cartVacio">Carrito vacío</li>`;
         return;
     }
 
@@ -132,7 +133,7 @@ const subTotal = Math.round(precioConvertido * parseInt(product.cantidad));
     });
 
     const costoEnvio = Math.round(subtotal * envioRate);
-    const total = subtotal + costoEnvio;
+    total = subtotal + costoEnvio;
 
     htmlContentToAppend += `
         <li class="list-group-item d-flex justify-content-between align-items-start bg-secondary">
@@ -184,6 +185,9 @@ document.addEventListener("click", (e) => {
 let envioRate = 0;
 
 function finalizarCompra() {
+    let pago;
+    let carrito;
+
     let errores = [];
 
     //Validar dirección
@@ -192,9 +196,12 @@ function finalizarCompra() {
     const calle = document.getElementById("calle").value.trim();
     const numero = document.getElementById("numero").value.trim();
     const esquina = document.getElementById("esquina").value.trim();
+    const comentarios = document.getElementById("comentariosAd").value.trim();
 
     if (!departamento || !localidad || !calle || !numero || !esquina) {
         errores.push("Completa todos los campos de la dirección de envío.");
+    }else{
+        carrito = {envioRate, total, departamento, localidad, calle, numero, esquina, comentarios};
     }
 
     //Validar envío
@@ -224,11 +231,15 @@ function finalizarCompra() {
 
             if (!numeroTarjeta || !nombre || !vencimiento || !cvv || cuotas === "Cuotas") {
                 errores.push("Completa todos los datos de la tarjeta.")
+            }else{
+                pago = {tipo: "Tarjeta", numeroTarjeta, nombre, vencimiento, cvv, cuotas};
             }
         } else if (pagoSeleccionado.id === "transferenciaOption") {
             const comprobante = document.getElementById("comprobanteFile");
             if (!comprobante || comprobante.files.length === 0) {
                 errores.push("Debes adjuntar el comprobante de transferencia.");
+            }else{
+                pago = {tipo: "Transferencia", comprobante: comprobante.files[0].name};
             }
         }
     }
@@ -252,6 +263,9 @@ function finalizarCompra() {
         alertDiv.classList.add("alert-success");
         alertDiv.innerHTML = `<strong>✅ ¡Compra exitosa!</strong> Gracias por tu compra.`;
 
+        //Insertamos la compra en la base de datos
+        insertCart(pago, carrito, JSON.parse(localStorage.getItem("cartItems")));
+
         //Vaciamos el carrito luego de una compra exitosa
         localStorage.removeItem("cartItems");
         generateProductsItems([]);
@@ -263,4 +277,42 @@ function finalizarCompra() {
 
     //Quitamos la alerta luego de 2 segundos
     setTimeout(() => alertDiv.remove(), 2000);
+}
+
+async function insertCart(pago, cart, products){
+    const res = await fetch(urlCart, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          payment: {
+            type: pago.tipo,
+            number: pago.numeroTarjeta, 
+            name_lastname: pago.nombre, 
+            expiration: pago.vencimiento, 
+            cvv: pago.cvv, 
+            installments: pago.cuotas,
+            image: pago.comprobante
+          },
+          cart: {
+            fee: cart.envioRate, 
+            department: cart.departamento, 
+            city: cart.localidad, 
+            street: cart.calle, 
+            street_number: cart.numero, 
+            corner: cart.esquina, 
+            additional_comments: cart.comentarios, 
+            total_price: cart.total
+          },
+          products: products.productos.map(p => ({
+            product_id: p.id,
+            quantity: p.cantidad
+          }))
+        })
+      });
+
+      const data = await res.json();
+      console.log(data);
 }

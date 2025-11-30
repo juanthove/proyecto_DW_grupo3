@@ -117,7 +117,7 @@ if (navBar) {
                 ${parsedUser.user}
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item border-bottom" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item border-bottom" id="user" href="my-profile.html">Mi perfil</a></li>
                 <li><button id="logoutBtn" class="btn btn-outline-secondary m-2">Cerrar sesión</button></li>
               </ul>
             </div>
