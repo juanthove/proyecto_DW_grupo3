@@ -1,10 +1,12 @@
+const BASE_AUTH_API_URL = "http://localhost:3000/auth";
+
 document.addEventListener('DOMContentLoaded', () => {
 
   let modoOscuro = (localStorage.getItem("modo") === "Negro");
 
   //Funcion que cambia el modo
-  function getModoTexto(){
-    return modoOscuro ? "Negro" : "Blanco"; 
+  function getModoTexto() {
+    return modoOscuro ? "Negro" : "Blanco";
   }
 
   const btnLogin = document.getElementById('btnLogin');
@@ -46,26 +48,58 @@ document.addEventListener('DOMContentLoaded', () => {
     return { ok, user, pass };
   }
 
-  btnLogin.addEventListener('click', (e) => {
+  btnLogin.addEventListener('click', async (e) => {
     e.preventDefault();
-    const { ok, user } = validate();
+
+    const { ok, user, pass } = validate();
     if (!ok) return;
 
-    const sessionObj = {
-      logged: true,
-      user: user,
-      createdAt: Date.now()
-    };
-    localStorage.setItem(sessionKey, JSON.stringify(sessionObj));
+    try {
+      // 1. Hacer POST a /login
+      const res = await fetch(`${BASE_AUTH_API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: user,
+          password: pass
+        })
+      });
 
-    const redirect = localStorage.getItem('redirectAfterLogin');
-    if (redirect) {
-      localStorage.removeItem('redirectAfterLogin');
-      window.location.href = redirect;
-    } else {
-      window.location.href = 'index.html';
+      if (!res.ok) {
+        alert("Credenciales incorrectas");
+        return;
+      }
+
+      const data = await res.json();
+
+      // 2. Guardar token JWT
+      localStorage.setItem("authToken", data.token);
+
+      // 3. Guardar info de sesión
+      const sessionObj = {
+        logged: true,
+        user: user,
+        createdAt: Date.now()
+      };
+      localStorage.setItem(sessionKey, JSON.stringify(sessionObj));
+
+      // 4. Redirección
+      const redirect = localStorage.getItem('redirectAfterLogin');
+      if (redirect) {
+        localStorage.removeItem('redirectAfterLogin');
+        window.location.href = redirect;
+      } else {
+        window.location.href = 'index.html';
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Hubo un error al iniciar sesión. Intenta de nuevo.");
     }
   });
+
 
   [usuarioInput, passwordInput].forEach(input => {
     input.addEventListener('keydown', (ev) => {
@@ -81,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const divImagen = document.getElementById("imagenEMercado");
 
   /*Modo Oscuro*/
-  function actualizarModo(){
+  function actualizarModo() {
     //Cambiar color letra y fondo
     if (modoOscuro) {
       document.body.classList.add("oscuro");
@@ -92,9 +126,9 @@ document.addEventListener('DOMContentLoaded', () => {
       botonModoOscuro.classList.add("activo"); //Activar el boton para que se mueva a la derecha
       divImagen.innerHTML = `<img src="img/login.png" alt="Logo eMercado" class="img-fluid logo-login mb-4">`; //Inserto la imagen EMercado con las letras negras
     }
-  } 
+  }
 
-  botonModoOscuro.addEventListener("click", function(){
+  botonModoOscuro.addEventListener("click", function () {
     modoOscuro = !modoOscuro;
     localStorage.setItem("modo", getModoTexto());
     actualizarModo();

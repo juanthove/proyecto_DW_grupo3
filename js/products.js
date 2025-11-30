@@ -22,7 +22,7 @@ function showProductsList(array) {
                         </div>
                     <div class="d-flex justify-content-between mt-1 mb-2" >
                         <p class="mb-1"><b>${selectedCurrency} ${converted.toFixed(2)}</b></p>
-                        <small>${product.soldCount} vendidos</small> 
+                        <small>${product.sold_count} vendidos</small> 
                     </div>
                     <p class="mb-1 description">${product.description}</p>
                 </div>
@@ -68,10 +68,10 @@ document.querySelectorAll(".sort-buttons button")[1].addEventListener("click", (
 
 document.querySelectorAll(".sort-buttons button")[2].addEventListener("click", () => {
     if (relReverse) {
-        filteredProductsArray.sort((a, b) => b.soldCount - a.soldCount);
+        filteredProductsArray.sort((a, b) => b.sold_count - a.sold_count);
         relReverse = false;
     } else {
-        filteredProductsArray.sort((a, b) => a.soldCount - b.soldCount);
+        filteredProductsArray.sort((a, b) => a.sold_count - b.sold_count);
         relReverse = true;
     }
 

@@ -21,7 +21,7 @@ const getProductsById = async (id) => {
         description: rowsProduct[0].description,
         cost: rowsProduct[0].cost,
         currency: rowsProduct[0].currency,
-        soldCount: rowsProduct[0].soldCount,
+        sold_count: rowsProduct[0].sold_count,
         category: rowsProduct[0].category,
         images: rowsProduct[0].images ? rowsProduct[0].images.split(',') : [],
         relatedProducts: rowsRelated
