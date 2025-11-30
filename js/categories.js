@@ -23,8 +23,8 @@ function sortCategories(criteria, array){
         });
     }else if (criteria === ORDER_BY_PROD_COUNT){
         result = array.sort(function(a, b) {
-            let aCount = parseInt(a.productCount);
-            let bCount = parseInt(b.productCount);
+            let aCount = parseInt(a.product_count);
+            let bCount = parseInt(b.product_count);
 
             if ( aCount > bCount ){ return -1; }
             if ( aCount < bCount ){ return 1; }
@@ -46,8 +46,8 @@ function showCategoriesList(){
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
-        if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
+        if (((minCount == undefined) || (minCount != undefined && parseInt(category.product_count) >= minCount)) &&
+            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.product_count) <= maxCount))){
 
             htmlContentToAppend += `
             <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active info-bg text-white">
@@ -58,7 +58,7 @@ function showCategoriesList(){
                     <div class="col">
                         <div class="d-flex w-100 justify-content-between">
                             <h4 class="mb-1">${category.name}</h4>
-                            <small>${category.productCount} artículos</small>
+                            <small>${category.product_count} artículos</small>
                         </div>
                         <p class="mb-1">${category.description}</p>
                     </div>

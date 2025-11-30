@@ -3,6 +3,7 @@ const PUBLISH_PRODUCT_URL = "https://japceibal.github.io/emercado-api/sell/publi
 const PRODUCTS_URL = "http://localhost:3000/products/cats_products/";
 let navBar = document.getElementById("navBarDiv");
 const userObj = localStorage.getItem('myAppSession');
+const token = localStorage.getItem('authToken')
 const parsedUser = JSON.parse(userObj);
 
 
@@ -24,9 +25,13 @@ let hideSpinner = function () {
 let getJSONData = function (url) {
   let result = {};
   showSpinner();
-  return fetch(url)
+  return fetch(url, {
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  })
     .then(response => {
-  
+
       if (response) {
         return response.json();
       } else {
@@ -64,7 +69,7 @@ function updateCartBadge() {
 
 if (navBar) {
 
- navBar.innerHTML = `
+  navBar.innerHTML = `
 <nav class="navbar navbar-expand-lg navbar-dark p-1 background-navbar">
   <div class="container d-flex">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -165,7 +170,7 @@ async function getExchangeRates() {
   const response = await getJSONData(url);
 
   if (response?.data?.rates) {
-    return {date: response.data.date, rates: response.data.rates};
+    return { date: response.data.date, rates: response.data.rates };
   } else {
     console.error("Error al obtener las tasas de cambio:", response.data);
     return null;
@@ -178,17 +183,17 @@ async function initExchangeRates() {
   const today = new Date();
   const savedRates = JSON.parse(localStorage.getItem("exchangeRates"));
   let rates;
-  if (!savedRates || savedRates?.date < today  ) {
+  if (!savedRates || savedRates?.date < today) {
     rates = await getExchangeRates();
   } else {
     rates = savedRates;
   }
-  
+
   localStorage.setItem("exchangeRates", JSON.stringify(rates));
 }
 
 function convertPrice(amount, fromCurrency, toCurrency) {
-  const {rates} = JSON.parse(localStorage.getItem("exchangeRates"));
+  const { rates } = JSON.parse(localStorage.getItem("exchangeRates"));
   if (!rates) {
     return amount; // Si no hay tasas de cambio, devuelve el monto original
   }
@@ -208,35 +213,35 @@ function convertPrice(amount, fromCurrency, toCurrency) {
 }
 
 function currencyIconsHandler() {
-const uyFlag = document.getElementById("uyu");
-const usFlag = document.getElementById("usd");
-let selectedCurrency = localStorage.getItem("currency") || "USD";
+  const uyFlag = document.getElementById("uyu");
+  const usFlag = document.getElementById("usd");
+  let selectedCurrency = localStorage.getItem("currency") || "USD";
 
-// estado visual inicial
+  // estado visual inicial
 
-if (selectedCurrency === "USD") {
-  usFlag.classList.add("active");
-  uyFlag.classList.remove("active");
-} else {
-  uyFlag.classList.add("active");
-  usFlag.classList.remove("active");
-} 
-// Manejo de clicks en los iconos de moneda
+  if (selectedCurrency === "USD") {
+    usFlag.classList.add("active");
+    uyFlag.classList.remove("active");
+  } else {
+    uyFlag.classList.add("active");
+    usFlag.classList.remove("active");
+  }
+  // Manejo de clicks en los iconos de moneda
 
-uyFlag?.addEventListener("click", () => {
-  localStorage.setItem("currency", "UYU");
-  location.reload();
-});
+  uyFlag?.addEventListener("click", () => {
+    localStorage.setItem("currency", "UYU");
+    location.reload();
+  });
 
-usFlag?.addEventListener("click", () => {
-  localStorage.setItem("currency", "USD");
-  location.reload();
-});
+  usFlag?.addEventListener("click", () => {
+    localStorage.setItem("currency", "USD");
+    location.reload();
+  });
 }
 
 
 
-   //Fin logica de conversion de divisas
+//Fin logica de conversion de divisas
 
 document.addEventListener('DOMContentLoaded', () => {
   currencyIconsHandler(); // Inicializa el selector de moneda
