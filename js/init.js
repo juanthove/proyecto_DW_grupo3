@@ -117,7 +117,7 @@ if (navBar) {
                 ${parsedUser.user}
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item border-bottom" href="my-profile.html">Mi perfil</a></li>
+                <li><a class="dropdown-item border-bottom" id="user" href="my-profile.html">Mi perfil</a></li>
                 <li><button id="logoutBtn" class="btn btn-outline-secondary m-2">Cerrar sesión</button></li>
               </ul>
             </div>
@@ -193,7 +193,8 @@ async function initExchangeRates() {
 }
 
 function convertPrice(amount, fromCurrency, toCurrency) {
-  const { rates } = JSON.parse(localStorage.getItem("exchangeRates"));
+
+  const rates = JSON.parse(localStorage.getItem("exchangeRates"));
   if (!rates) {
     return amount; // Si no hay tasas de cambio, devuelve el monto original
   }

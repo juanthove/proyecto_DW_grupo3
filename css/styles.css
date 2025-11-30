@@ -1232,7 +1232,7 @@ body.oscuro .background-navbar {
   /*Cambiar el color de la nav bar*/
 }
 
-body.oscuro .navbar a {
+body.oscuro .navbar a:not(#user) {
   color: white !important;
 }
 
@@ -1333,11 +1333,6 @@ body.oscuro small {
   color: white;
   /*Color de la cantidad de articulos*/
 }
-
-/*body.oscuro .img-thumbnail{ Color del borde de las imagenes
-  border-color: rgb(80, 80, 80); 
-  background-color: transparent;
-}*/
 
 /*Productos*/
 body.oscuro label:not(.btn) {
@@ -1440,6 +1435,9 @@ body.oscuro .btn-close{
   filter: invert(1); /*Cambiar color X a gris claro*/
 }
 
+body.oscuro #cartVacio{
+  color: white;
+}
 
 /*Imagenes cambiar modo*/
 #sol {
