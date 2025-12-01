@@ -168,7 +168,6 @@ function actualizarModo() {
 async function getExchangeRates() {
   const url = "https://api.currencyfreaks.com/v2.0/rates/latest?apikey=b0c26dcf820542348a28b7b23d288065&symbols=UYU,USD&base=USD";
   const response = await getJSONData(url);
-
   if (response?.data?.rates) {
     return { date: response.data.date, rates: response.data.rates };
   } else {
@@ -194,7 +193,7 @@ async function initExchangeRates() {
 
 function convertPrice(amount, fromCurrency, toCurrency) {
 
-  const rates = JSON.parse(localStorage.getItem("exchangeRates"));
+  const { rates } = JSON.parse(localStorage.getItem("exchangeRates"));
   if (!rates) {
     return amount; // Si no hay tasas de cambio, devuelve el monto original
   }
